@@ -16,9 +16,11 @@
 
 https://www.kaggle.com/datasets/julianoorlandi/spotify-top-songs-and-audio-features/data
 
-Our dataset contains the songs from the top 200 charts on Spotify for each year since 2016, their respective artists and number of streams, as well as the audio features of each song. 
+Our dataset contains the songs from the top 200 charts on Spotify for each year since 2016, their respective artists and number of streams, as well as the audio features of each song. The dataset is updated regularly (with new charts data), and the latest update at the time of writting this was carried out on March 10th.
 
-The data is complete and requires no preprocessing or cleaning, and can be worked with directly.
+The data is complete and requires very little preprocessing or cleaning, and can be worked with directly for the most part. A closer look at the dataset and an explanation is carried out in the "EDA" interactive notebook found in the ```Milestone 1``` folder.
+
+As of March 10th 2024, there are currently 6513 entries in the dataset, each entry represents a track, with its associated artists, Spotify statistics such as number of streams, the number of weeks on the top charts, and then a few very interesting descrpitive and musical features such as" "key", "energy", "danceability", time signature and many others which are further explored in the Python notebook. 
 
 ### Problematic
 
@@ -30,12 +32,14 @@ Overall, we aim to provide a novel and intuitive tool for analyzing songs and ar
 
 The current target audience ranges from teenagers to young adults who would like to discover more about their favorite songs (as they were the target demographic of music released since 2016), but also could include professional DJs or movie directors looking for songs that fit into very specific criteria.
 
-We want to provide a practical visualization of song features that, even if tracked, are not often presented when using an app such as Spotify. However for those curious, we believe that the data should be available, and in our case aim to provide full control over searching based on these criteria. Instead of relying on genres, stereotypes, albums and specific playlists, we explore a completely different approach to presenting songs and artists. As a result, we hope to come across unexpected discoveries, and create a visualization that could be generalized to a data set beyond only the Top 200 charts.
+We want to provide a practical visualization of song features that, even if tracked, are not often presented when using an app such as Spotify. However for those curious, we believe that the data should be available, and in our case aim to provide full control over searching based on these criteria. Instead of relying on genres, stereotypes, albums and specific playlists, we explore a completely different approach to presenting songs and artists. As a result, we hope to come across unexpected discoveries, and create a visualization that could be generalized to a dataset beyond only the Top 200 charts.
 
 
 ### Exploratory Data Analysis
 
-See ```Milestone1/EDA.pdf``` for a preliminary data analysis.
+The EDA was performed in a python interactive notebook, which can be found [here](Milestone%201/EDA.ipynb).
+
+
 
 ### Related work
 

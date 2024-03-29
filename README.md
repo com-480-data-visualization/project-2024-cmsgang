@@ -34,7 +34,7 @@ The current target audience ranges from teenagers to young adults who would like
 
 We want to provide a practical visualization of song features that, even if tracked, are not often presented when using an app such as Spotify. However for those curious, we believe that the data should be available, and in our case aim to provide full control over searching based on these criteria. Instead of relying on genres, stereotypes, albums and specific playlists, we explore a completely different approach to presenting songs and artists. As a result, we hope to come across unexpected discoveries, and create a visualization that could be generalized to a dataset beyond only the Top 200 charts.
 
-Here is a visual prototype sketch that will hopefully aid in understanding the goal of the project: ![picture could not load](Milestone 1/prototype sketch "Our prototype. Credits: Annie")
+Here is a visual prototype sketch that will hopefully aid in understanding the goal of the project: ![picture could not load](Milestone%201/prototype%20sketch "Our prototype. Credits: Annie")
 
 
 ### Exploratory Data Analysis

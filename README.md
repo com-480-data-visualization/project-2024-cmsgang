@@ -20,7 +20,7 @@ Our dataset contains the songs from the top 200 charts on Spotify for each year 
 
 The data is complete and requires very little preprocessing or cleaning, and can be worked with directly for the most part. A closer look at the dataset and an explanation is carried out in the "EDA" interactive notebook found in the ```Milestone 1``` folder.
 
-As of March 10th 2024, there are currently 6513 entries in the dataset, each entry represents a track, with its associated artists, Spotify statistics such as number of streams, the number of weeks on the top charts, and then a few very interesting descrpitive and musical features such as" "key", "energy", "danceability", time signature and many others which are further explored in the Python notebook. 
+As of March 10th 2024, there are currently 6513 entries in the dataset, each entry represents a track, with its associated artists, Spotify statistics such as number of streams, the number of weeks on the top charts, and then a few very interesting descrpitive and musical features such as "key", "energy", "danceability", time signature and many others which are further explored in the Python notebook. 
 
 ### Problematic
 

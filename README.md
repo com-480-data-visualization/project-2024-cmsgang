@@ -41,7 +41,7 @@ Our motivation stems from wanting to understand the meaning of the datasets’ v
 
 ### Exploratory Data Analysis
 
-The EDA was performed in a python interactive notebook, which can be found [here](Milestone%201/EDA.ipynb).
+The EDA was performed in a python interactive notebook, which can be found [here](Milestone 1/EDA.ipynb).
 
 
 ### Related work

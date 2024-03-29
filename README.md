@@ -22,22 +22,20 @@ The data is complete and requires no preprocessing or cleaning, and can be worke
 
 ### Problematic
 
-The aim of our visualization is to present various characteristics of a selected song in a fun and appealing way (using a dancing crowd animation). Simultaneously, the measures of these characteristics will be shown in a sound-wave-bars style and on a DJ control table and a snippet of the song played. Additionally, artists’ average characteristics can be presented in the exact same fashion, which becomes interesting when trying to evaluate an artists’ general style.
+The aim of our visualization is to present the various characteristics of a selected song in a fun and appealing way (i.e. a crowd dancing faster or slower based on the song tempo). Simultaneously, the values of these characteristics will be represented as bar graphs, imitating the look of a sound wave with each bar representing a different characteristic. A DJ table placed at the bottom of the page allows for filtering desired characteristics, as well as playing a snippet of the song. More concretely, the DJ table consists of multiple interactable buttons and sliders corresponding to the different song features (key, tempo, duration, ...), which allows the user to find songs based on specific combinations of desired criteria. 
 
-Where this visualization set-up becomes interesting is with the inverse option of manipulating the said DJ table. Multiple buttons and sliders, corresponding to the different characteristics can be adjusted by the user, and corresponding songs (or artists’ averages) automatically presented in the exact same way. This allows the user to find songs (or artists) based on specific desired criterias and their specific combinations, like a measure of their “danceability” for example. 
+In a similar fashion, a toggle between songs and artists allows artists’ average song characteristics to be filtered and presented. This enables the user to find artists who produce a certain style of music, once again using the DJ table as a controller. Naturally, should the user not wish to use the filters, it is possible to search for songs and artists directly through a search bar at the top of the page.
 
-We think that through this project we can create a tool allowing a new way of analyzing songs and artists on the one hand, and discovering new songs and artists on the other. All of that wrapped in a single, easy to use and to understand, fun and visually appealing frame.
-Think of an overview for the project, your motivation, and the target audience.
+Overall, we aim to provide a novel and intuitive tool for analyzing songs and artists, as well as for discovering new songs. All of that wrapped in a single easy to use, fun and visually appealing frame.
 
-The target audience ranges from a child wanting to play around with his favorite songs and understand how a crowd could be reacting to them, to professional DJs looking for songs fitting into very specific criterias.
+The current target audience ranges from teenagers to young adults who would like to discover more about their favorite songs (as they were the target demographic of music released since 2016), but also could include professional DJs or movie directors looking for songs that fit into very specific criteria.
 
-Our motivation stems from wanting to understand the meaning of the datasets’ variables and evolved into wanting to make practical use of these characteristics. For that purpose, an instinctive and interactive visual representation is needed, which we will aim to design. Instead of relying on genres, stereotypes, albums and specific playlists, we want to find a completely different approach to present songs and artists. Hopefully, this can lead to unexpected discoveries and maybe one day generalize to include more songs than the Top 200 Spotify songs since 2016 that are provided in our selected dataset.
+We want to provide a practical visualization of song features that, even if tracked, are not often presented when using an app such as Spotify. However for those curious, we believe that the data should be available, and in our case aim to provide full control over searching based on these criteria. Instead of relying on genres, stereotypes, albums and specific playlists, we explore a completely different approach to presenting songs and artists. As a result, we hope to come across unexpected discoveries, and create a visualization that could be generalized to a data set beyond only the Top 200 charts.
 
 
 ### Exploratory Data Analysis
 
-> Pre-processing of the data set you chose
-> - Show some basic statistics and get insights about the data
+See ```Milestone1/EDA.pdf``` for a preliminary data analysis.
 
 ### Related work
 

@@ -42,6 +42,7 @@ Our motivation stems from wanting to understand the meaning of the datasets’ v
 ### Exploratory Data Analysis
 
 The EDA was performed in a python interactive notebook, which can be found here: [[Link to the notebook](Milestone 1/EDA.ipynb)](https://nbviewer.org/github/com-480-data-visualization/project-2024-cmsgang/blob/master/Milestone%201/EDA.ipynb)
+<iframe src="[http://www.example.com](https://nbviewer.org/github/com-480-data-visualization/project-2024-cmsgang/blob/master/Milestone%201/EDA.ipynb)" width="600" height="400"></iframe>
 
 ### Related work
 

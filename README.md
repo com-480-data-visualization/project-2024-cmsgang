@@ -55,7 +55,6 @@ Our approach uses the top charts dataset
 > - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
 
 
-<<<<<<< HEAD
 ## Milestone 2 (26th April, 5pm)
 
 **10% of the final grade**
@@ -65,5 +64,3 @@ Our approach uses the top charts dataset
 
 **80% of the final grade**
 
-=======
->>>>>>> 80fb9485c64c44407ae3c4f1102f752d9e964bd1

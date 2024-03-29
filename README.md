@@ -2,32 +2,37 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-| | |
-| | |
-| | |
+| Christopher Williams | 300174 |
+| Stefan Popescu | 299558 |
+| Anne-Marie Rusu | 296098 |
+| Simon Gmür | 303207 |
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
 ## Milestone 1 (29th March, 5pm)
 
-**10% of the final grade**
-
-This is a preliminary milestone to let you set up goals for your final project and assess the feasibility of your ideas.
-Please, fill the following sections about your project.
-
-*(max. 2000 characters per section)*
 
 ### Dataset
 
-> Find a dataset (or multiple) that you will explore. Assess the quality of the data it contains and how much preprocessing / data-cleaning it will require before tackling visualization. We recommend using a standard dataset as this course is not about scraping nor data processing.
->
-> Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)), you could use also the DataSets proposed by the ENAC (see the Announcements section on Zulip).
+https://www.kaggle.com/datasets/julianoorlandi/spotify-top-songs-and-audio-features/data
+
+Our dataset contains the songs from the top 200 charts on Spotify for each year since 2016, their respective artists and number of streams, as well as the audio features of each song. 
+
+The data is complete and requires no preprocessing or cleaning, and can be worked with directly.
 
 ### Problematic
 
-> Frame the general topic of your visualization and the main axis that you want to develop.
-> - What am I trying to show with my visualization?
-> - Think of an overview for the project, your motivation, and the target audience.
+The aim of our visualization is to present various characteristics of a selected song in a fun and appealing way (using a dancing crowd animation). Simultaneously, the measures of these characteristics will be shown in a sound-wave-bars style and on a DJ control table and a snippet of the song played. Additionally, artists’ average characteristics can be presented in the exact same fashion, which becomes interesting when trying to evaluate an artists’ general style.
+
+Where this visualization set-up becomes interesting is with the inverse option of manipulating the said DJ table. Multiple buttons and sliders, corresponding to the different characteristics can be adjusted by the user, and corresponding songs (or artists’ averages) automatically presented in the exact same way. This allows the user to find songs (or artists) based on specific desired criterias and their specific combinations, like a measure of their “danceability” for example. 
+
+We think that through this project we can create a tool allowing a new way of analyzing songs and artists on the one hand, and discovering new songs and artists on the other. All of that wrapped in a single, easy to use and to understand, fun and visually appealing frame.
+Think of an overview for the project, your motivation, and the target audience.
+
+The target audience ranges from a child wanting to play around with his favorite songs and understand how a crowd could be reacting to them, to professional DJs looking for songs fitting into very specific criterias.
+
+Our motivation stems from wanting to understand the meaning of the datasets’ variables and evolved into wanting to make practical use of these characteristics. For that purpose, an instinctive and interactive visual representation is needed, which we will aim to design. Instead of relying on genres, stereotypes, albums and specific playlists, we want to find a completely different approach to present songs and artists. Hopefully, this can lead to unexpected discoveries and maybe one day generalize to include more songs than the Top 200 Spotify songs since 2016 that are provided in our selected dataset.
+
 
 ### Exploratory Data Analysis
 

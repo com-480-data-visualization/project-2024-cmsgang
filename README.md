@@ -16,9 +16,14 @@
 
 https://www.kaggle.com/datasets/julianoorlandi/spotify-top-songs-and-audio-features/data
 
-Our dataset contains the songs from the top 200 charts on Spotify for each year since 2016, their respective artists and number of streams, as well as the audio features of each song. 
+Our dataset contains the songs from the top 200 charts on Spotify for each year since 2016, their respective artists and number of streams, as well as the audio features of each song. The dataset is updated regularly (with new charts data), and the latest update at the time of writting this was carried out on march 10th. 
 
-The data is complete and requires no preprocessing or cleaning, and can be worked with directly.
+The data is complete and requires very little preprocessing or cleaning, and can be worked with directly for the most part.
+
+A closer look at the dataset and an explanation is carried out in the "EDA" interactive notebook found in the "milestone 1" file on this repository. However we can give a brief overview of the dataset.
+
+As of March 10th 2024, there are currently 6513 entries in the dataset, each entry represents a track, with its associated artists, spotify statistics such as number of streams, the number of weeks on the top charts, and then a few very interesting descrpitive and musical features such as" "key", "energy", "danceability", time signature and many others which are further explored in the python notebook. 
+
 
 ### Problematic
 

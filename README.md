@@ -41,8 +41,7 @@ Our motivation stems from wanting to understand the meaning of the datasets’ v
 
 ### Exploratory Data Analysis
 
-> Pre-processing of the data set you chose
-> - Show some basic statistics and get insights about the data
+The EDA was performed in a python interactive notebook, which can be found here: [Link to the notebook](milestone1/EDA.ipynb)
 
 ### Related work
 

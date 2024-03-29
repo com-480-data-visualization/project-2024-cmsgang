@@ -51,18 +51,3 @@ The EDA was performed in a python interactive notebook, which can be found [here
 > - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
 > - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
 
-## Milestone 2 (26th April, 5pm)
-
-**10% of the final grade**
-
-
-## Milestone 3 (31st May, 5pm)
-
-**80% of the final grade**
-
-
-## Late policy
-
-- < 24h: 80% of the grade for the milestone
-- < 48h: 70% of the grade for the milestone
-

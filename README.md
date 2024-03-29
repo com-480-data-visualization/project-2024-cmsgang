@@ -50,11 +50,11 @@ While Spotify data has been used for many different visualizations across the ye
 
 - Why is your approach original?
 
-Our approach uses the top charts dataset 
+Our approach uses the top charts dataset, however we utilize the specific audio characteristics of each song rather than number of streams. We are not interested in how popular songs are, but rather the features that make up the songs themselves. This allows us to also visualize the artists as more than just a number that represents popularity, instead displaying them as an average of their compositions' features, defining their style.       
 
 - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
 
-Chris (God).
+Given the music-oriented dataset, we inspired ourselves from a typical nightclub scene, playing the role of DJ. In this role, we use our turntable for full control over the type of music that is being played, being able to choose songs based on desired features. For each selection, we can observe the effect of our song choice on the partygoers, who will react accordingly to the tempo and liveness. As any good DJ has a prepared setlist of songs that fit together, our visualization presents a list of songs that match a given criteria, allowing us to search our extensive library for the perfect match.     
 
 ## Milestone 2 (26th April, 5pm)
 

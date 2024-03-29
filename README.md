@@ -42,14 +42,18 @@ Here is a visual prototype sketch that will hopefully aid in understanding the g
 The EDA was performed in a python interactive notebook, which can be found [here](Milestone%201/EDA.ipynb).
 
 
-
 ### Related work
 
+- What others have already done with the data?
 
-> - What others have already done with the data?
-> - Why is your approach original?
+While Spotify data has been used for many different visualizations across the years, the majority of these cases explores the popularity (and its evolution) of specific songs and artists. While it is definitely an interesting approach to the data, it has been overdone and lacks the level of detail that our approach aims to achieve.
+
+- Why is your approach original?
+
+Our approach uses the top charts dataset 
+
 > - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
-> - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
+
 
 ## Milestone 2 (26th April, 5pm)
 
@@ -59,10 +63,4 @@ The EDA was performed in a python interactive notebook, which can be found [here
 ## Milestone 3 (31st May, 5pm)
 
 **80% of the final grade**
-
-
-## Late policy
-
-- < 24h: 80% of the grade for the milestone
-- < 48h: 70% of the grade for the milestone
 

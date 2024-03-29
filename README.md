@@ -52,8 +52,9 @@ While Spotify data has been used for many different visualizations across the ye
 
 Our approach uses the top charts dataset 
 
-> - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
+- What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
 
+Chris (God).
 
 ## Milestone 2 (26th April, 5pm)
 

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive DJ Booth</title>
+    <style>
+        :root {
+            --primary-color: #5b8bf7;  
+            --secondary-color: #ff6f61;  
+            --accent-color: #ffd700; 
+            --background-color:#efbbff;
+            --left-box-background-color: #d896ff;
+            --text-color: #800080; 
+            --text-color-light: #fff;
+            --border-color: #660066; 
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #search-bar {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #search-bar input[type="text"] {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            border: none;
+            background-color: var(--background-color);
+            border-bottom: 2px solid var(--border-color);
+            margin: 0 auto;
+            display: block;
+        }
+
+        #main-content {
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+        }
+
+        #list-area {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--left-box-background-color);
+            overflow-y: auto;
+            height: 480px;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        #list-area h3 {
+            margin-bottom: 0; /* Removes the default margin to allow the lines to be closer to the text */
+        }
+
+        #visualization {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 450px;
+            margin-top: 20px;
+        }
+
+        #player, audio {
+            text-align: center;
+            width: 100%;
+        }
+
+        #controls-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            height:150px;
+        }
+
+        #dj-controls {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            border:1px solid var(--border-color);
+        }
+
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top:25px;
+        }
+        .slider-container label {
+            padding-top: 45px;
+            color: var(--text-color);
+            text-align: center;
+        }
+        .slider-container input[type="range"] {
+            transform: rotate(-90deg);
+            width: 100px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .custom-line {
+            border: none;
+            height: 2px;
+            background-color: var(--text-color); /* Match the color of the text */
+            margin: 5px 0; /* Adjust the space around the lines */
+        }
+
+        #toggle-song-artist {
+            width: 100px;
+            height: 50px;
+        }
+
+        #song-artist-list h3 {
+            color: var(--text-color);
+        }
+
+        #crowd-reaction img {
+            max-width: 100%; /* Ensure images do not exceed their container */
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, auto); /* Creates two columns */
+            grid-template-rows: repeat(2, auto); /* Creates two rows */
+            gap: 10px; /* Space between buttons */
+            justify-content: center; /* Center the grid horizontally */
+            align-items: center; /* Center the grid vertically */
+            padding: 20px; /* Optional: Padding around the entire grid */
+        }
+
+        .grid-button {
+            width: 50px; /* Width of each button */
+            height: 50px; /* Height of each button to make it square */
+            background-color: var(--border-color); /* Button color from your color scheme */
+            border: 1px solid var(--border-color); /* Button border from your color scheme */
+            cursor: pointer; /* Changes the cursor to signify a clickable element */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="search-bar">
+            <input type="text" id="search-input" placeholder="Search Songs/Artists...">
+        </div>
+        
+        <div id="main-content">
+            <div id="list-area">
+                <h3>Song name | Artist</h3>
+                <hr class="custom-line">
+                <div id="player">
+                    <audio controls>
+                        <source src="sample.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            
+            <div>
+                <div id="visualization">
+                    <img src="stats.png" alt="Stats">
+                    <img src="homies.png" alt="Homies">
+                </div>
+
+                <div id="controls-container">
+                    <div id="dj-controls">
+                        <img src="disc.png" alt="disc1" style="height: 120px;">
+                        
+                        <div class="button-grid">
+                            <button class="grid-button"></button>
+                            <button class="grid-button"></button>
+                            <button class="grid-button"></button>
+                            <button class="grid-button"></button>
+                        </div>
+
+                        <img src="disc.png" alt="disc1" style="height: 120px;">
+                        
+
+                        <div class="slider-container">
+                            <input type="range" id="loudness" name="loudness" min="1" max="100" value="50" orient="vertical" oninput="updateSliderValue(this)">
+                            <label for="loudness">Loudness: <span id="loudness-value">50</span></label>
+                        </div>
+                        
+                        <div class="slider-container">
+                            <input type="range" id="tempo" name="tempo" min="60" max="200" value="120" orient="vertical" oninput="updateSliderValue(this)">
+                            <label for="tempo">Tempo: <span id="tempo-value">120</span></label>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="button-container">
+                        <button id="toggle-song-artist" style="height: 100px; width: 100px;">Toggle Song/Artist</button>
+                    </div>
+                </div>         
+            </div>
+        </div>
+    </div>
+    
+    <script src="sliderScript.js"></script>
+        
+</body>
+</html>

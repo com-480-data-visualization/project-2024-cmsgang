@@ -59,7 +59,7 @@ Given the music-oriented dataset, we inspired ourselves from a typical nightclub
 ## Milestone 2 (26th April, 5pm)
 
 **10% of the final grade**
-
+PDF can be found [here](Milestone2/DataViz%20Milestone%202.pdf)
 
 ## Milestone 3 (31st May, 5pm)
 

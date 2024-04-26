@@ -5,7 +5,7 @@
     <title>Interactive DJ Booth</title>
     <style>
         :root {
-            --primary-color: #5b8bf7;  
+            --primary-color: #00c3ff;  
             --secondary-color: #ff6f61;  
             --accent-color: #ffd700; 
             --background-color:#efbbff;
@@ -13,6 +13,7 @@
             --text-color: #800080; 
             --text-color-light: #fff;
             --border-color: #660066; 
+            --barcolor: #660066;
         }
 
         body {
@@ -158,9 +159,13 @@
             cursor: pointer; /* Changes the cursor to signify a clickable element */
         }
 
-
+        .bar {
+            fill: var(--barcolor);
+        }
 
     </style>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -182,9 +187,11 @@
             
             <div>
                 <div id="visualization">
-                    <img src="stats.png" alt="Stats">
+                    <!-- <img src="stats.png" alt="Stats"> -->
+                    <div id="bar-chart"></div>
                     <img src="homies.png" alt="Homies">
                 </div>
+
 
                 <div id="controls-container">
                     <div id="dj-controls">
@@ -219,6 +226,81 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Data 
+        var data = [
+            {label: 'A', value: 10},
+            {label: 'B', value: 20},
+            {label: 'C', value: 30},
+            {label: 'D', value: 40},
+            {label: 'E', value: 6},
+            {label: 'F', value: 15},
+            {label: 'G', value: 30},
+        ];
+
+        // Set dimensions and margins for the chart
+        var margin = {top: 100, right: 20, bottom: 20, left: 40},
+            width = 200 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        // Append SVG object to the div with id="bar-chart"
+        var svg = d3.select("#bar-chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height+200)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Set the ranges for the scales
+        var x = d3.scaleBand()
+                .range([0, width])
+                .padding(0.1);
+        var y = d3.scaleLinear()
+                .range([height/2, 0, height/2]);
+
+        // Scale the range of the data in the domains
+        x.domain(data.map(function(d) { return d.label; }));
+        y.domain([d3.min(data, function(d) { return d.value; }), d3.max(data, function(d) { return d.value; })]);
+
+        // Bars
+        svg.selectAll(".bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.label); })
+            .attr("width", x.bandwidth())
+            .attr("y", function(d) { return y(Math.max(0, d.value)); })
+            .attr("height", function(d) { return Math.abs(y(d.value) - y(0)); })
+            .attr("ry", "9"); //curved corner
+
+        // Mirrored bars (sound wave effect)
+        svg.selectAll(".mirror-bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.label); })
+            .attr("width", x.bandwidth())
+            .attr("y", function(d) { return y(0)-10; }) 
+            .attr("height", function(d) { return Math.abs(y(d.value) - y(0)); })
+            .attr("ry", "9") //curved corner
+ 
+        // Labels
+        svg.selectAll(".bar-label")
+            .data(data)
+            .enter().append("text")
+            .attr("class", ".bar-label")
+            .attr("alignment-baseline", "middle")
+            .attr("fill", "white")
+            .attr("font-size", "14px")
+            .attr("x", function(d) { return x(d.label) + x.bandwidth() / 2 ; }) // Center label
+            .attr("y", function(d) { return y(0) + 1; }) 
+            .attr("transform", function(d) {
+                var xPosition = x(d.label) + x.bandwidth() / 2;
+                var yPosition = y(0);
+                return `rotate(-90, ${xPosition}, ${yPosition})`; // Rotate 90 degrees
+            })
+            .text(function(d) { return d.label; });
+    </script>
     
     <script src="script.js"></script>
         

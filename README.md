@@ -62,6 +62,8 @@ Given the music-oriented dataset, we inspired ourselves from a typical nightclub
 
 PDF can be found [here](Milestone2/DataViz%20Milestone%202.pdf)
 
+Prototype Website [here](https://com-480-data-visualization.github.io/project-2024-cmsgang/)
+
 ## Milestone 3 (31st May, 5pm)
 
 **80% of the final grade**

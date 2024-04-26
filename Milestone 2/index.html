@@ -189,7 +189,14 @@
                 <div id="visualization">
                     <!-- <img src="stats.png" alt="Stats"> -->
                     <div id="bar-chart"></div>
-                    <img src="homies.png" alt="Homies">
+                    <svg id="stickman" viewBox="0 0 100 200" style="width: 100px; height: 200px;">
+                        <circle cx="50" cy="30" r="10" fill="black"/> <!-- Head -->
+                        <line x1="50" y1="40" x2="50" y2="100" stroke="black" stroke-width="2"/> <!-- Body -->
+                        <line x1="50" y1="60" x2="30" y2="80" stroke="black" stroke-width="2"/> <!-- Left arm -->
+                        <line x1="50" y1="60" x2="70" y2="80" stroke="black" stroke-width="2"/> <!-- Right arm -->
+                        <line x1="50" y1="100" x2="30" y2="150" stroke="black" stroke-width="2"/> <!-- Left leg -->
+                        <line x1="50" y1="100" x2="70" y2="150" stroke="black" stroke-width="2"/> <!-- Right leg -->
+                    </svg>
                 </div>
 
 
@@ -303,6 +310,39 @@
     </script>
     
     <script src="script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+anime.timeline({ loop: true })
+    .add({
+        targets: '#stickman line:nth-child(3)', // Left arm
+        rotate: [0, 20],
+        duration: 500,
+        easing: 'easeInOutSine'
+    })
+    .add({
+        targets: '#stickman line:nth-child(4)', // Right arm
+        rotate: [0, -20],
+        duration: 500,
+        offset: '-=500', 
+        easing: 'easeInOutSine'
+    })
+    .add({
+        targets: '#stickman line:nth-child(5)', // Left leg
+        rotate: [0, 10], 
+        duration: 500,
+        offset: 0, 
+        easing: 'easeInOutSine'
+    })
+    .add({
+        targets: '#stickman line:nth-child(6)', // Right leg
+        rotate: [0, -10],
+        duration: 500,
+        offset: '-=500', 
+        easing: 'easeInOutSine'
+    });
+</script>
+
         
 </body>
 </html>

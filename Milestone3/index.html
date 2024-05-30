@@ -9,20 +9,20 @@
 <body>
     <div class="container">
         <div id="search-bar">
-            <input type="text" id="search-input" placeholder="Search Songs/Artists...">
+            <input type="text" id="search-input" onkeyup="filterSongs()" placeholder="Search Songs/Artists...">
         </div>
         
         <div id="main-content">
             <div id="list-area">
-                <h3 id="List Title">Song List</h3>
-                <hr class="custom-line">
-                <div id="player">
-                    <audio controls>
-                        <source src="sample.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
+                <div id="list-title">
+                    <h3>Song List</h3>
+                    <hr class="custom-line">
+                </div>
+                <div id="song-container">
+                    <!-- Songs will be dynamically loaded into this container -->
                 </div>
             </div>
+            
             
             <div>
                 <div id="visualization">
@@ -64,6 +64,10 @@
         </div>
     </div>
 
+
+
+
+    <script src="csvManipulator.js"></script>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 

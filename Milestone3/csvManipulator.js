@@ -169,7 +169,7 @@ function resetFilters() {
 }
 
 function filterSongsByTempo() {
-    const tempoSlider = document.getElementById('tempo-slider');
+    const tempoSlider = document.getElementById('disc2');
     const tempoValue = parseFloat(tempoSlider.value);
     const filteredSongs = window.allSongsData.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
     displayList(filteredSongs);
@@ -189,58 +189,4 @@ let initialAngle = 0;
 let currentAngle = 0;
 let energyValue = 0;
 
-let isSpinning = false;
-let initialAngle = 0;
-let currentAngle = 0;
-let energyValue = 0;
-
-document.addEventListener('mousemove', function(event) {
-    if (isSpinning) {
-        const rect = document.getElementById('disc2').getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const angle = Math.atan2(event.clientY - centerY, event.clientX - centerX) * (180 / Math.PI);
-        const deltaAngle = angle - initialAngle;
-        
-        if ((energyValue === 1 && deltaAngle > 0) || (energyValue === 0 && deltaAngle < 0)) {
-            initialAngle = angle;
-            return; // Stop spinning if caps are reached
-        }
-        
-        currentAngle += deltaAngle;
-        if (currentAngle >= 360) {
-            currentAngle -= 360;
-        } else if (currentAngle <= -360) {
-            currentAngle += 360;
-        }
-        initialAngle = angle;
-        updateEnergyValue(currentAngle);
-    }
-});
-
-document.addEventListener('mouseup', function() {
-    isSpinning = false;
-});
-
-function startSpinningDisc(event) {
-    isSpinning = true;
-    const rect = document.getElementById('disc2').getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    initialAngle = Math.atan2(event.clientY - centerY, event.clientX - centerX) * (180 / Math.PI);
-}
-
-function updateEnergyValue(angle) {
-    let newEnergyValue = angle / 360;
-    newEnergyValue = Math.min(Math.max(newEnergyValue, 0), 1); // Clamp value between 0 and 1
-    energyValue = newEnergyValue;
-    document.getElementById('energy-value').textContent = newEnergyValue.toFixed(2);
-}
-
-function resetEnergy() {
-    energyValue = 0;
-    document.getElementById('energy-value').textContent = energyValue.toFixed(2);
-    currentAngle = 0;
-    document.getElementById('disc2').style.transform = 'rotate(0deg)';
-}
 

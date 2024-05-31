@@ -126,11 +126,29 @@
             </div>
         </div>
 
+
+
         <div id="bottom-box-container">
             <div class="reset-all-container">
                 <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
             </div>
             <div id="controls-container">
+                <div id="small-button-grid-container">
+                    <div class="small-button-grid">
+                        <button class="small-grid-button" id="button1" onclick="toggleButton(this)">Danc</button>
+                        <button class="small-grid-button" id="button2" onclick="toggleButton(this)">2</button>
+                        <button class="small-grid-button" id="button3" onclick="toggleButton(this)">3</button>
+                        <button class="small-grid-button" id="button4" onclick="toggleButton(this)">4</button>
+                        <button class="small-grid-button" id="button5" onclick="toggleButton(this)">5</button>
+                        <button class="small-grid-button" id="button6" onclick="toggleButton(this)">6</button>
+                        <button class="small-grid-button" id="button7" onclick="toggleButton(this)">7</button>
+                        <button class="small-grid-button" id="button8" onclick="toggleButton(this)">8</button>
+                        <button class="small-grid-button" id="button9" onclick="toggleButton(this)">9</button>
+                        <button class="small-grid-button" id="button10" onclick="toggleButton(this)">10</button>
+                        <button class="small-grid-button" id="button11" onclick="toggleButton(this)">11</button>
+                        <button class="small-grid-button" id="button12" onclick="toggleButton(this)">12</button>
+                    </div>
+                </div>
                 <div id="dj-controls">
                     <div class="disc-container">
                         <label for="Key">Key: <span id="key-value">Any</span></label>
@@ -145,12 +163,12 @@
                                 <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
                             </div>
                             <div class="button-with-label">
-                                <label for="valence-mode" class="grid-label">Valence</label>
+                                <label for="valence-mode" class="grid-label">Mood</label>
                                 <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
                             </div>
                             <div class="button-with-label">
                                 <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
-                                <label for="lyrics-mode" class="grid-label">Lyrics</label>
+                                <label for="lyrics-mode" class="grid-label">Speech</label>
                             </div>
                             <div class="button-with-label">
                                 <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
@@ -194,7 +212,6 @@
     <script src="csvManipulator.js"></script>
     <script src="spotifyAPI.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
     <script>
     anime.timeline({ loop: true })
         .add({

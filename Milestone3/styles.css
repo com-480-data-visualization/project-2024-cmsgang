@@ -9,6 +9,10 @@
     --border-color: #660066; 
     --item-color: #ffffff;
     --dj-background-color:#e3bdff;
+    --small-gray-button-color: #3b3b3b9e;
+    --small-red-button-hover: #a9a9a9;
+    --small-green-button-color: #14b914;
+    --small-green-button-hover: #1adf1a;
 }
 
 
@@ -430,6 +434,48 @@ body {
     max-width: 100%; /* Ensure images do not exceed their container */
 }
 
+/* Styles for the small button grid */
+#small-button-grid-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: -350px;
+    padding-right: 100px;
+}
+
+.small-button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 50px); /* 4 columns, adjust size as needed */
+    grid-gap: 10px; /* Space between buttons */
+}
+
+.small-grid-button {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    background-color: var(--small-gray-button-color); /* Initial color */
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 40px; /* Center text vertically */
+    box-shadow: 2px 2px black;
+}
+
+.small-grid-button:hover {
+    background-color: var(--small-red-button-hover); /* Color on hover */
+}
+
+.small-grid-button.green {
+    background-color: var(--small-green-button-color); /* Color when clicked */
+}
+
+.small-grid-button.green:hover {
+    background-color: var(--small-green-button-hover); /* Color on hover */
+}
+
+
+
 .button-grid-container {
     display: flex;
     flex-direction: column;
@@ -467,6 +513,8 @@ body {
     height: 50px; /* Height of each button to make it square */
     background-color: var(--accent-color); /* Button color from your color scheme */
     border: 1px solid var(--border-color); /* Button border from your color scheme */
+    box-shadow: 3px 3px var(--secondary-color);
+
     cursor: pointer; /* Changes the cursor to signify a clickable element */
 }
 

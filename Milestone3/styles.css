@@ -325,6 +325,12 @@ body {
     cursor: pointer; /* Changes the cursor to signify a clickable element */
 }
 
+.button-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .bar {
     fill: var(--barcolor);
 }

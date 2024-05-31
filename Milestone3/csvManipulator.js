@@ -1,9 +1,46 @@
+let danceabilityModeIndex = -1;
+const danceabilityModes = [
+    { mode: 'Low', range: [0, 0.25] },
+    { mode: 'Med.', range: [0.25, 0.5] },
+    { mode: 'High', range: [0.5, 0.75] },
+    { mode: 'Max', range: [0.75, 1] }
+];
+
+let valenceModeIndex = -1;
+const valenceModes = [
+    { mode: ':(', range: [0, 0.33] },
+    { mode: ':|', range: [0.25, 0.5] },
+    { mode: ':)', range: [0.5, 0.75] },
+];
+
+let lyricModeIndex = -1;
+const lyricModes = [
+    { mode: 'Off', range: [0, 0.1] },
+    { mode: 'Low', range: [0.1, 0.3] },
+    { mode: 'Med.', range: [0.3, 0.5] },
+    { mode: 'High', range: [0.5, 0.75] },
+    { mode: 'Max', range: [0.75, 1] }
+];
+
+let instrumentalModeIndex = -1;
+const instrumentalModes = [
+    { mode: 'Low', range: [0, 0.1] },
+    { mode: 'Med.', range: [0.1, 0.5] },
+    { mode: 'High', range: [0.5, 1] },
+];
+
+let isSpinning = false;
+let initialAngle = 0;
+let currentAngle = 0;
+let energyValue = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch('spotify_top_songs_audio_features.csv')
         .then(response => response.text())
         .then(data => {
             const parsedData = parseCSV(data);
-            const uniqueData = removeDuplicates(parsedData); // Remove duplicates
+            const filteredData = removeSongsWithEmptyAttributes(parsedData); // Remove songs with missing attributes
+            const uniqueData = removeDuplicates(filteredData); // Remove duplicates
             const sortedData = sortSongsAlphabetically(uniqueData); // Sort alphabetically
 
             displayList(sortedData);
@@ -90,7 +127,7 @@ function filterSongs() {
     const filter = input.value.toUpperCase();
     const songs = document.querySelectorAll('#list-area .song-box');
     songs.forEach(song => {
-        const text = song.textContent || song.innerText;
+        const text = song.textContent || song.innerText ;
         song.style.display = text.toUpperCase().indexOf(filter) > -1 ? "" : "none";
     });
 }
@@ -119,6 +156,12 @@ function removeDuplicates(songs) {
             seen.add(identifier);
             return true;
         }
+    });
+}
+
+function removeSongsWithEmptyAttributes(songs) {
+    return songs.filter(song => {
+        return song.danceability && song.energy && song.speechiness && song.acousticness && song.instrumentalness && song.liveness && song.valence && song.loudness && song.tempo;
     });
 }
 
@@ -156,37 +199,246 @@ function updateAttributeBars(songData) {
     });
 }
 
-function resetFilters() {
+/** 
+ * When you reset a filter, the other filters should still be applied
+ * For example, if you filter by tempo and then reset, the loudness filter should still be applied on a fresh list of songs
+ * This function is called after a filter is reset
+ */
+function applyFiltersAfterReset(attribute, filteredSongs) {
+
+    // Apply loudness filter if it's not the initial value and the attribute is not being reset
+    if (attribute !== 'loudness') {
+        const loudnessSlider = document.getElementById('loudness-slider');
+        const loudnessValue = parseFloat(loudnessSlider.value);
+        if (loudnessValue !== parseFloat(loudnessSlider.min)) {
+            filteredSongs = filteredSongs.filter(song => song.loudness >= loudnessValue - 1 && song.loudness <= loudnessValue + 1);
+        }
+    }
+
+    // Apply tempo filter if it's not the initial value and the attribute is not being reset
+    if (attribute !== 'tempo') {
+        const tempoSlider = document.getElementById('tempo-slider');
+        const tempoValue = parseFloat(tempoSlider.value);
+        if (tempoValue !== parseFloat(tempoSlider.min)) {
+            filteredSongs = filteredSongs.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
+        }
+    }
+
+    if(attribute !== 'energy') {
+        const energyValue = document.getElementById('energy-value').textContent;
+        if (energyValue !== "Any") {
+            const floatEnergyValue = parseFloat(energyValue);
+            filteredSongs = filteredSongs.filter(song => Math.abs(song.energy - floatEnergyValue) <= 0.05);
+        }
+    }
+
+    // Add additional filters here as needed
+    
+    // Update song list with filtered results
+    displayList(filteredSongs);
+}
+
+function resetTempoFilter() {
     const tempoSlider = document.getElementById('tempo-slider');
-    tempoSlider.value = 45; // Reset to initial value
-    document.getElementById('tempo-value').textContent = '-';
+    tempoSlider.value = tempoSlider.min; // Reset to initial value
+    document.getElementById('tempo-value').textContent = 'Any';
 
-    const loudnessSlider = document.getElementById('loudness-slider');
-    loudnessSlider.value = 0; // Reset to initial value
-    document.getElementById('loudness-value').textContent = '-';
-
-    displayList(window.allSongsData); // Display all songs
+    applyFiltersAfterReset('tempo', window.allSongsData);
 }
 
 function filterSongsByTempo() {
-    const tempoSlider = document.getElementById('disc2');
+    const tempoSlider = document.getElementById('tempo-slider');
     const tempoValue = parseFloat(tempoSlider.value);
     const filteredSongs = window.allSongsData.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
-    displayList(filteredSongs);
     document.getElementById('tempo-value').textContent = tempoValue; // Update the displayed tempo value
+
+    applyFiltersAfterReset('tempo', filteredSongs);
+}
+
+function resetLoudnessFilter() {
+    const loudnessSlider = document.getElementById('loudness-slider');
+    loudnessSlider.value = loudnessSlider.min; // Reset to initial value
+    document.getElementById('loudness-value').textContent = 'Any';
+
+    applyFiltersAfterReset('loudness', window.allSongsData);
 }
 
 function filterSongsByLoudness() {
     const loudnessSlider = document.getElementById('loudness-slider');
     const loudnessValue = parseFloat(loudnessSlider.value);
     const filteredSongs = window.allSongsData.filter(song => song.loudness >= loudnessValue - 1 && song.loudness <= loudnessValue + 1);
-    displayList(filteredSongs);
     document.getElementById('loudness-value').textContent = loudnessValue; // Update the displayed loudness value
+
+    applyFiltersAfterReset('loudness', filteredSongs);
 }
 
-let isSpinning = false;
-let initialAngle = 0;
-let currentAngle = 0;
-let energyValue = 0;
+function toggleDanceabilityMode() {
+    danceabilityModeIndex = (danceabilityModeIndex + 1) % danceabilityModes.length;
+    const mode = danceabilityModes[danceabilityModeIndex];
+    filterSongsByDanceability(mode.range);
+    document.getElementById('danceability-mode').textContent = mode.mode; // Update button text to show current mode
+}
+
+function filterSongsByDanceability(range) {
+    const [min, max] = range;
+    const filteredSongs = window.allSongsData.filter(song => song.danceability >= min && song.danceability <= max);
+    displayList(filteredSongs);
+}
+
+function toggleValenceMode() {
+    valenceModeIndex = (valenceModeIndex + 1) % valenceModes.length;
+    const mode = valenceModes[valenceModeIndex];
+    filterSongsByValence(mode.range);
+    document.getElementById('valence-mode').textContent = mode.mode; // Update button text to show current mode
+}
+
+function filterSongsByValence(range) {
+    const [min, max] = range;
+    const filteredSongs = window.allSongsData.filter(song => song.valence >= min && song.valence <= max);
+    displayList(filteredSongs);
+}
+
+function toggleLyricsMode() {
+    lyricModeIndex = (lyricModeIndex + 1) % lyricModes.length;
+    const mode = lyricModes[lyricModeIndex];
+    filterSongsByLyrics(mode.range);
+    document.getElementById('lyrics-mode').textContent = mode.mode; // Update button text to show current mode
+}
+
+function filterSongsByLyrics(range) {
+    const [min, max] = range;
+    const filteredSongs = window.allSongsData.filter(song => song.speechiness >= min && song.speechiness <= max);
+    displayList(filteredSongs);
+}
+
+function toggleInstrumentalMode() {
+    instrumentalModeIndex = (instrumentalModeIndex + 1) % instrumentalModes.length;
+    const mode = instrumentalModes[instrumentalModeIndex];
+    filterSongsByInstrumental(mode.range);
+    document.getElementById('instrumental-mode').textContent = mode.mode; // Update button text to show current mode
+}
+
+function filterSongsByInstrumental(range) {
+    const [min, max] = range;
+    const filteredSongs = window.allSongsData.filter(song => song.instrumentalness >= min && song.instrumentalness <= max);
+    displayList(filteredSongs);
+}
+
+
+function updateSliderValue(slider) {
+    var value = slider.value;
+    var valueSpan = document.getElementById(slider.name + "-value");
+    valueSpan.textContent = value;
+}
+
+function toggleSongArtist(button) {
+    var currentSelection = document.getElementById("List Title");
+    if (currentSelection.textContent == "Song List") {
+        currentSelection.textContent = "Artist List";
+        button.textContent = "Show Song List";
+    } else {
+        currentSelection.textContent = "Song List";
+        button.textContent = "Show Artist List";
+    }
+}
+
+
+/** ENERGY DISC FUNCTIONS */
+function startDrag(e, discId) {
+    e.preventDefault();
+
+    var disc = document.getElementById(discId);
+    var rect = disc.getBoundingClientRect();
+    var centerX = rect.left + rect.width / 2;
+    var centerY = rect.top + rect.height / 2;
+    var startX = e.clientX - centerX;
+    var startY = e.clientY - centerY;
+    initialAngle = Math.atan2(startY, startX);
+    currentAngle = disc.dataset.rotation ? parseFloat(disc.dataset.rotation) : 0;
+
+    isSpinning = true;
+
+    function drag(e) {
+        if (!isSpinning) return;
+
+        var mouseX = e.clientX - centerX;
+        var mouseY = e.clientY - centerY;
+        var angle = Math.atan2(mouseY, mouseX);
+        var angleDifference = angle - initialAngle;
+
+        // Get current energy value
+        var energySpan = document.getElementById('energy-value');
+        var energyValue = parseFloat(energySpan.textContent);
+
+        if ((energyValue === 1 && angleDifference > 0) || (energyValue === 0 && angleDifference < 0)) {
+            initialAngle = angle;
+            return; // Stop spinning if caps are reached
+        }
+
+        currentAngle += angleDifference * (180 / Math.PI);
+        if (currentAngle >= 360) {
+            currentAngle -= 360;
+        } else if (currentAngle <= -360) {
+            currentAngle += 360;
+        }
+
+        initialAngle = angle;
+        disc.dataset.rotation = currentAngle; // Store the current rotation
+
+        // Throttle updates
+        if (lastUpdateTime && Date.now() - lastUpdateTime < 16) {
+            return;
+        }
+        lastUpdateTime = Date.now();
+
+        updateEnergyValue(currentAngle);
+        disc.style.transform = 'rotate(' + currentAngle + 'deg)';
+    }
+
+    function stopDrag() {
+        isSpinning = false;
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('mouseup', stopDrag);
+    }
+
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDrag);
+}
+
+
+let lastUpdateTime = 0;
+
+function filterSongsByEnergy() {
+    const energyValue = parseFloat(document.getElementById('energy-value').textContent);
+    const filteredSongs = window.allSongsData.filter(song => Math.abs(song.energy - energyValue) <= 0.05);
+    applyFiltersAfterReset('energy', filteredSongs);
+}
+
+function updateEnergyValue(rotation) {
+    let angle = rotation % 360;
+    if (angle < 0) {
+        angle += 360;
+    }
+    let newEnergyValue = angle / 360;
+    newEnergyValue = Math.min(Math.max(newEnergyValue, 0), 1); // Clamp value between 0 and 1
+    document.getElementById('energy-value').textContent = newEnergyValue.toFixed(2);
+    filterSongsByEnergy(); // Call the filter function when energy value is updated
+}
+
+function resetEnergy() {
+    energyValue = 0;
+    document.getElementById('energy-value').textContent = "Any";
+    currentAngle = 0;
+    document.getElementById('disc2').style.transform = 'rotate(0deg)';
+    
+    applyFiltersAfterReset('energy', window.allSongsData);
+}
+
+// Your existing event listeners for dragging
+document.getElementById('disc1').dataset.rotation = '0';
+document.getElementById('disc2').dataset.rotation = '0';
+
+document.getElementById('disc1').addEventListener('mousedown', function(e) { startDrag(e, 'disc1'); });
+document.getElementById('disc2').addEventListener('mousedown', function(e) { startDrag(e, 'disc2'); });
 
 

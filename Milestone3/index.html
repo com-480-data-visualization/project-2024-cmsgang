@@ -111,71 +111,71 @@
             </div>
         </div>
 
-        <div id="controls-container">
-            <div id="dj-controls">
-                <div class="disc-container">
-                    <label for="Key">Key: <span id="key-value">Any</span></label>
-                    <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;" >
-                    <button class="reset-button" onclick="resetKey()">Reset</button>
-                </div>
-
-                <div class="button-grid-container">
-                    <div class="button-grid">
-                        <div class="button-with-label">
-                            <label for="danceability-mode" class="grid-label">Danceability</label>
-                            <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
-                        </div>
-                        <div class="button-with-label">
-                            <label for="valence-mode" class="grid-label">Valence</label>
-                            <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
-                        </div>
-                        <div class="button-with-label">
-                            <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
-                            <label for="lyrics-mode" class="grid-label">Lyrics</label>
-                        </div>
-                        <div class="button-with-label">
-                            <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
-                            <label for="instrumental-mode" class="grid-label">Instrumental</label>
-                        </div>
-                    </div>
-
-                    <div class="reset-all-container">
-                        <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
-                    </div>
-                </div>
-                
-                
-
-                <div class="disc-container">
-                    <label for="energy">Energy: <span id="energy-value">Any</span></label>
-                    <img src="Images/disc.png" id="disc2" alt="Disc 2" style="height: 120px;" >
-                    <button class="reset-button" onclick="resetEnergy()">Reset</button>
-                </div>
-                <div class="slider-container">
-                    <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
-                    <label for="loudness">Loudness: <span id="loudness-value">Any</span></label>
-                    <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
-                </div>
-                
-                <div class="slider-container">
-                    <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
-                    <label for="tempo">Tempo: <span id="tempo-value">Any</span></label>
-                    <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
-                </div>
-            </div>
-
-            <div class="button-container">
-                <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleSongArtist(this)">Toggle Song/Artist</button>
-            </div>
+        <div id="bottom-box-container">
             <div class="reset-all-container">
                 <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
             </div>
-        </div>        
+            <div id="controls-container">
+                <div id="dj-controls">
+                    <div class="disc-container">
+                        <label for="Key">Key: <span id="key-value">Any</span></label>
+                        <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;" >
+                        <button class="reset-button" onclick="resetKey()">Reset</button>
+                    </div>
+    
+                    <div class="button-grid-container">
+                        <div class="button-grid">
+                            <div class="button-with-label">
+                                <label for="danceability-mode" class="grid-label">Danceability</label>
+                                <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
+                            </div>
+                            <div class="button-with-label">
+                                <label for="valence-mode" class="grid-label">Valence</label>
+                                <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
+                            </div>
+                            <div class="button-with-label">
+                                <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
+                                <label for="lyrics-mode" class="grid-label">Lyrics</label>
+                            </div>
+                            <div class="button-with-label">
+                                <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
+                                <label for="instrumental-mode" class="grid-label">Instrumental</label>
+                            </div>
+                        </div>
+    
+                        <div class="reset-all-container">
+                            <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
+                        </div>
+                    </div>
+    
+                    <div class="disc-container">
+                        <label for="energy">Energy: <span id="energy-value">Any</span></label>
+                        <img src="Images/disc.png" id="disc2" alt="Disc 2" style="height: 120px;" >
+                        <button class="reset-button" onclick="resetEnergy()">Reset</button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
+                        <label for="loudness">Loudness: <span id="loudness-value">Any</span></label>
+                        <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
+                        <label for="tempo">Tempo: <span id="tempo-value">Any</span></label>
+                        <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
+                    </div>
+                </div>
+    
+                <div class="button-container">
+                    <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleSongArtist(this)">Toggle Song/Artist</button>
+                </div>
+            </div>   
+        </div>
+     
         
     </div>
 
     <script src="csvManipulator.js"></script>
-    <script src="discController.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <script>

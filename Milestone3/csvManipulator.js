@@ -516,5 +516,33 @@ function resetButtonFilters(){
     lyricModeIndex = -1;
     instrumentalModeIndex = -1;
     applyFiltersAfterReset('allbuttons', window.allSongsData);
+}
 
+function resetAllFilters(){
+    resetEnergy();
+    resetTempoFilter();
+    resetLoudnessFilter();
+    resetKey();
+    resetButtonFilters();
+}
+
+function applyFilterFromBar(attribute){
+    if(attribute === 'energy'){
+        filterSongsByEnergy();
+    }
+    if(attribute === 'key'){
+        filterSongsByKey();
+    }
+    if(attribute === 'danceability'){
+        filterSongsByDanceability(danceabilityModes[danceabilityModeIndex].range);
+    }
+    if(attribute === 'valence'){
+        filterSongsByValence(valenceModes[valenceModeIndex].range);
+    }
+    if(attribute === 'lyrics'){
+        filterSongsByLyrics(lyricModes[lyricModeIndex].range);
+    }
+    if(attribute === 'instrumental'){
+        filterSongsByInstrumental(instrumentalModes[instrumentalModeIndex].range);
+    }
 }

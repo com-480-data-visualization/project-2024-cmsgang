@@ -236,6 +236,20 @@ body {
     height: 480px;
 }
 
+#bottom-box-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    margin: 0px auto;
+}
+
+.reset-all-container{
+    align-self:end;
+    padding-right: 120px;
+}
+
 #controls-container {
     display: flex;
     justify-content: center; /* Center horizontally */

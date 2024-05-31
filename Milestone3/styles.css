@@ -268,7 +268,7 @@ body {
 
 .vertical-bar.positive {
     height: 0%; /* Initial height, will be set dynamically */
-    bottom: 49%; /* Align bottom to the center */
+    bottom: 47%; /* Align bottom to the center */
     border-top-left-radius: 20px; /* rounded corners */
     border-top-right-radius: 20px; /* rounded corners */
     box-shadow: 0px -3px 0px 1px var(--bar-shadow-color);

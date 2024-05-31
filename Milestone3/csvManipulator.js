@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function parseCSV(text) {
     const lines = text.split('\n');
     const headers = splitCSVButIgnoreCommasInQuotes(lines[0]);
-    const fields = ['track_name', 'artist_names', 'key', 'mode', 'time_signature', 'danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'loudness', 'tempo'];
+    const fields = ['track_name', 'artist_names', 'key', 'mode', 'time_signature', 'danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'loudness', 'tempo', 'id'];
     const indices = fields.map(field => headers.indexOf(field));
 
     return lines.slice(1).map(line => {
@@ -94,7 +94,8 @@ function parseCSV(text) {
         liveness: parseFloat(parts[10]),
         valence: parseFloat(parts[11]),
         loudness: Math.abs(parseFloat(parts[12])),
-        tempo: parseFloat(parts[13])
+        tempo: parseFloat(parts[13]),
+        id: parts[14]
     }));
 }
 
@@ -129,9 +130,20 @@ function displayList(data) {
         container.appendChild(songBox);
 
         // Add click event listener to each song box
-        songBox.addEventListener('click', function() {
+        songBox.addEventListener('click', async function() {
             updateSelectedSong(song);
             updateAttributeBars(song);
+            const track = await getTrackById(song.id);
+            
+            // If the track exists and has a preview URL, show the audio player and play the song
+            if (track && track.preview_url) {
+                document.getElementById('audio-player-container').style.display = 'block';
+                playSong(track.preview_url);
+            } else {
+                // Otherwise, pause the song in case one was playing previously and hide the audio player
+                pauseSong();
+                document.getElementById('audio-player-container').style.display = 'none';
+            }
         });
     });
 }

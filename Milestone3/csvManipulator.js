@@ -1,23 +1,23 @@
 let danceabilityModeIndex = -1;
 const danceabilityModes = [
     { mode: 'Low', range: [0, 0.25] },
-    { mode: 'Med.', range: [0.25, 0.5] },
+    { mode: 'Med', range: [0.25, 0.5] },
     { mode: 'High', range: [0.5, 0.75] },
     { mode: 'Max', range: [0.75, 1] }
 ];
 
 let valenceModeIndex = -1;
 const valenceModes = [
-    { mode: ':(', range: [0, 0.33] },
-    { mode: ':|', range: [0.25, 0.5] },
-    { mode: ':)', range: [0.5, 0.75] },
+    { mode: '🙁', range: [0, 0.33] },
+    { mode: '😐', range: [0.25, 0.5] },
+    { mode: '😄', range: [0.5, 0.75] },
 ];
 
 let lyricModeIndex = -1;
 const lyricModes = [
     { mode: 'Off', range: [0, 0.1] },
     { mode: 'Low', range: [0.1, 0.3] },
-    { mode: 'Med.', range: [0.3, 0.5] },
+    { mode: 'Med', range: [0.3, 0.5] },
     { mode: 'High', range: [0.5, 0.75] },
     { mode: 'Max', range: [0.75, 1] }
 ];
@@ -25,7 +25,7 @@ const lyricModes = [
 let instrumentalModeIndex = -1;
 const instrumentalModes = [
     { mode: 'Low', range: [0, 0.1] },
-    { mode: 'Med.', range: [0.1, 0.5] },
+    { mode: 'Med', range: [0.1, 0.5] },
     { mode: 'High', range: [0.5, 1] },
 ];
 

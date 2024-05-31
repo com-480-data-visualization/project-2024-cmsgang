@@ -349,3 +349,7 @@ body {
     fill: var(--item-color);
 }
 
+.dj-button-text {
+    font-size: 20px; /* Adjust the font size as needed */
+}
+

@@ -10,7 +10,22 @@
     <div class="container">
         <div id="search-bar">
             <input type="text" id="search-input" onkeyup="filterSongs()" placeholder="Search Songs/Artists...">
-            <div id="selected-song" style="text-align: center; margin-top: 10px; font-size: 16px; color: var(--text-color);">No song selected</div>
+            <div id="search-results">
+                <div id="selected-song" style="text-align: center; margin-top: 10px; font-size: 16px; color: var(--text-color);">No song selected</div>
+                <div id="audio-player-container" style="display: none;">
+                    <div class="play-button-container">
+                        <button id="play-button" class="play-pause-button">
+                            <img src="Images/playButtonImg.png" alt="Play" id="play-icon" />
+                            <img src="Images/pauseButtonImg.png" alt="Pause" id="pause-icon" style="display: none;" />
+                        </button>
+                        <svg class="progress-ring" width="50" height="50">
+                            <circle class="progress-ring__circle" r="22" cx="25" cy="25"/>
+                        </svg>
+                    </div>
+                    <audio id="audio-player"></audio>
+                </div>
+            </div>
+            
         </div>
         
         <div id="main-content">
@@ -175,6 +190,7 @@
     </div>
 
     <script src="csvManipulator.js"></script>
+    <script src="spotifyAPI.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <script>

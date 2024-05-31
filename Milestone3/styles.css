@@ -8,7 +8,7 @@
     --text-color-light: #fff;
     --border-color: #660066; 
     --item-color: #ffffff;
-    --reset: #f9766c;
+    --dj-background-color:#e3bdff;
 }
 
 
@@ -190,6 +190,7 @@ body {
 }
 
 
+
 .vertical-bar.negative {
     height: 0%; /* Initial height, will be set dynamically */
     top: 50%; /* Align top to the center */
@@ -246,22 +247,38 @@ body {
 
 .reset-button {
     background-color: var(--secondary-color);
-    color: white;
+    color: var(--text-color-light);
     border: none;
     padding: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+.reset-button-grid{
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
 
+/* whole dj booth */
 #dj-controls {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    border: 1px solid var(--border-color);
+    border: 3px solid var(--border-color);
+    background-color: var(--dj-background-color);
+    border-radius: 6px;
+
 }
 
 .slider-container {
@@ -273,7 +290,8 @@ body {
 
 .slider-container label {
     padding-top: 55px;
-    color: var(--text-color);
+    font-weight: bold;
+    color: var(--secondary-color);
     text-align: center;
 }
 
@@ -291,17 +309,10 @@ body {
     padding-top: 5px;
 }
 
-.disc-container image:hover{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 5px;
-    background-color:#e7ffbb;
-}
-
 .disc-container label{
     padding-top: 0px;
-    color: var(--text-color);
+    font-weight: bold;
+    color: var(--secondary-color);
     text-align: center;
 }
 
@@ -360,6 +371,8 @@ body {
     background-color: var(--box-background); /* Button color from your color scheme */
     border: 1px solid var(--border-color); /* Button border from your color scheme */
     cursor: pointer; /* Changes the cursor to signify a clickable element */
+    box-shadow: 3px 3px var(--secondary-color);
+    margin: 3px;
 }
 
 .grid-button:hover {
@@ -375,6 +388,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-weight: bold;
+    color: var(--secondary-color);
 }
 
 .bar {

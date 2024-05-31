@@ -282,7 +282,7 @@ function toggleDanceabilityMode() {
 function filterSongsByDanceability(range) {
     const [min, max] = range;
     const filteredSongs = window.allSongsData.filter(song => song.danceability >= min && song.danceability <= max);
-    displayList(filteredSongs);
+    applyFiltersAfterReset('danceability', filteredSongs);
 }
 
 function toggleValenceMode() {
@@ -295,7 +295,7 @@ function toggleValenceMode() {
 function filterSongsByValence(range) {
     const [min, max] = range;
     const filteredSongs = window.allSongsData.filter(song => song.valence >= min && song.valence <= max);
-    displayList(filteredSongs);
+    applyFiltersAfterReset('valence', filteredSongs);
 }
 
 function toggleLyricsMode() {
@@ -308,7 +308,7 @@ function toggleLyricsMode() {
 function filterSongsByLyrics(range) {
     const [min, max] = range;
     const filteredSongs = window.allSongsData.filter(song => song.speechiness >= min && song.speechiness <= max);
-    displayList(filteredSongs);
+    applyFiltersAfterReset('lyrics', filteredSongs);
 }
 
 function toggleInstrumentalMode() {
@@ -321,7 +321,7 @@ function toggleInstrumentalMode() {
 function filterSongsByInstrumental(range) {
     const [min, max] = range;
     const filteredSongs = window.allSongsData.filter(song => song.instrumentalness >= min && song.instrumentalness <= max);
-    displayList(filteredSongs);
+    applyFiltersAfterReset('instrumental', filteredSongs);
 }
 
 

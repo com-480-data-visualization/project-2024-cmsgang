@@ -53,6 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
             window.allSongsData = sortedData; // Store all songs data for filtering
         })
         .catch(error => console.error('Error loading the CSV file:', error));
+
+    const barContainers = document.querySelectorAll('.vertical-bar-container');
+    barContainers.forEach(container => {
+        const positiveBar = container.querySelector('.vertical-bar.positive');
+        const negativeBar = container.querySelector('.vertical-bar.negative');
+
+        container.addEventListener('mouseenter', function() {
+            positiveBar.classList.add('hovered');
+            negativeBar.classList.add('hovered');
+        });
+
+        container.addEventListener('mouseleave', function() {
+            positiveBar.classList.remove('hovered');
+            negativeBar.classList.remove('hovered');
+        });
+    });
 });
 
 function parseCSV(text) {
@@ -200,8 +216,6 @@ function updateAttributeBars(songData) {
         
         const label = document.getElementById(`${attr}-label`);
         label.textContent = `${value.toFixed(2)}`;
-        
-        
     });
 }
 
@@ -526,23 +540,84 @@ function resetAllFilters(){
     resetButtonFilters();
 }
 
+/** When clicking on a bar, set the respective filter on the DJ board and apply it */
 function applyFilterFromBar(attribute){
+    label = document.getElementById(attribute + '-label');
+    value = parseFloat(label.textContent);
+
+    if(attribute === 'tempo'){
+        let tempoSlider = document.getElementById('tempo-slider');
+        tempoSlider.value = value;
+        filterSongsByTempo();
+    }
+
+    if(attribute === 'loudness'){
+        let loudnessSlider = document.getElementById('loudness-slider');
+        loudnessSlider.value = value;
+        filterSongsByLoudness();
+    }
+
     if(attribute === 'energy'){
+        // Set the energy value to the value of the bar clicked
+        let energySpan = document.getElementById('energy-value');
+        energySpan.textContent = value;
+        // Spin the energy disc to the correct position
+        let disc = document.getElementById('disc2');
+        disc.style.transform = 'rotate(' + (value * 360) + 'deg)';
         filterSongsByEnergy();
     }
+
     if(attribute === 'key'){
+        // Set the key value to the value of the bar clicked
+        let keySpan = document.getElementById('key-value');
+        keySpan.textContent = keys[Math.floor(value / 30)];
         filterSongsByKey();
     }
     if(attribute === 'danceability'){
+        // Set the danceability mode to the value of the bar clicked
+        for(let i = 0; i < danceabilityModes.length; i++){
+            console
+            if(value >= danceabilityModes[i].range[0] && value <= danceabilityModes[i].range[1]){
+                danceabilityModeIndex = i;
+                document.getElementById('danceability-mode').textContent = danceabilityModes[i].mode;
+                break;
+            }
+        }
         filterSongsByDanceability(danceabilityModes[danceabilityModeIndex].range);
     }
+
     if(attribute === 'valence'){
+        // Set the valence mode to the value of the bar clicked
+        for(let i = 0; i < valenceModes.length; i++){
+            if(value >= valenceModes[i].range[0] && value <= valenceModes[i].range[1]){
+                valenceModeIndex = i;
+                document.getElementById('valence-mode').textContent = valenceModes[i].mode;
+                break;
+            }
+        }
         filterSongsByValence(valenceModes[valenceModeIndex].range);
     }
-    if(attribute === 'lyrics'){
+    if(attribute === 'speechiness'){
+        // Set the lyrics mode to the value of the bar clicked
+        for(let i = 0; i < lyricModes.length; i++){
+            if(value >= lyricModes[i].range[0] && value <= lyricModes[i].range[1]){
+                lyricModeIndex = i;
+                document.getElementById('lyrics-mode').textContent = lyricModes[i].mode;
+                break;
+            }
+        }
         filterSongsByLyrics(lyricModes[lyricModeIndex].range);
     }
-    if(attribute === 'instrumental'){
+
+    if(attribute === 'instrumentalness'){
+        // Set the instrumental mode to the value of the bar clicked
+        for(let i = 0; i < instrumentalModes.length; i++){
+            if(value >= instrumentalModes[i].range[0] && value <= instrumentalModes[i].range[1]){
+                instrumentalModeIndex = i;
+                document.getElementById('instrumental-mode').textContent = instrumentalModes[i].mode;
+                break;
+            }
+        }
         filterSongsByInstrumental(instrumentalModes[instrumentalModeIndex].range);
     }
 }

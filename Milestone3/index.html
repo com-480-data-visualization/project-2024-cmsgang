@@ -28,24 +28,24 @@
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="danceability" class="vertical-label">Danceability</label>
-                        <div class="vertical-bar positive" id="danceability-bar-positive"></div>
-                        <div class="vertical-bar negative" id="danceability-bar-negative"></div>
+                        <div class="vertical-bar positive" id="danceability-bar-positive" onclick="applyFilterFromBar('danceability')"></div>
+                        <div class="vertical-bar negative" id="danceability-bar-negative" onclick="applyFilterFromBar('danceability')"></div>
                         <div class="bar-label" id="danceability-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="energy" class="vertical-label">Energy</label>
-                        <div class="vertical-bar positive" id="energy-bar-positive"></div>
-                        <div class="vertical-bar negative" id="energy-bar-negative"></div>
+                        <div class="vertical-bar positive" id="energy-bar-positive" onclick="applyFilterFromBar('energy')"></div>
+                        <div class="vertical-bar negative" id="energy-bar-negative" onclick="applyFilterFromBar('energy')"></div>
                         <div class="bar-label" id="energy-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="speechiness" class="vertical-label">Speechiness</label>
-                        <div class="vertical-bar positive" id="speechiness-bar-positive"></div>
-                        <div class="vertical-bar negative" id="speechiness-bar-negative"></div>
+                        <div class="vertical-bar positive" id="speechiness-bar-positive" onclick="applyFilterFromBar('speechiness')"></div>
+                        <div class="vertical-bar negative" id="speechiness-bar-negative" onclick="applyFilterFromBar('speechiness')"></div>
                         <div class="bar-label" id="speechiness-label"></div>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="instrumentalness" class="vertical-label">Instrumentalness</label>
-                        <div class="vertical-bar positive" id="instrumentalness-bar-positive"></div>
-                        <div class="vertical-bar negative" id="instrumentalness-bar-negative"></div>
+                        <div class="vertical-bar positive" id="instrumentalness-bar-positive" onclick="applyFilterFromBar('instrumentalness')"></div>
+                        <div class="vertical-bar negative" id="instrumentalness-bar-negative" onclick="applyFilterFromBar('instrumentalness')"></div>
                         <div class="bar-label" id="instrumentalness-label"></div>
                     </div>
                 </div>
@@ -76,24 +76,24 @@
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="valence" class="vertical-label">Valence</label>
-                        <div class="vertical-bar positive" id="valence-bar-positive"></div>
-                        <div class="vertical-bar negative" id="valence-bar-negative"></div>
+                        <div class="vertical-bar positive" id="valence-bar-positive" onclick="applyFilterFromBar('valence')"></div>
+                        <div class="vertical-bar negative" id="valence-bar-negative" onclick="applyFilterFromBar('valence')"></div>
                         <div class="bar-label" id="valence-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="loudness" class="vertical-label">Loudness</label>
-                        <div class="vertical-bar positive" id="loudness-bar-positive"></div>
-                        <div class="vertical-bar negative" id="loudness-bar-negative"></div>
+                        <div class="vertical-bar positive" id="loudness-bar-positive" onclick="applyFilterFromBar('loudness')"></div>
+                        <div class="vertical-bar negative" id="loudness-bar-negative" onclick="applyFilterFromBar('loudness')"></div>
                         <div class="bar-label" id="loudness-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="tempo" class="vertical-label">Tempo</label>
-                        <div class="vertical-bar positive" id="tempo-bar-positive"></div>
-                        <div class="vertical-bar negative" id="tempo-bar-negative"></div>
+                        <div class="vertical-bar positive" id="tempo-bar-positive" onclick="applyFilterFromBar('tempo')"></div>
+                        <div class="vertical-bar negative" id="tempo-bar-negative" onclick="applyFilterFromBar('tempo')"></div>
                         <div class="bar-label" id="tempo-label"></div>
                     </div>
                 </div>
@@ -142,10 +142,9 @@
                                 <label for="instrumental-mode" class="grid-label">Instrumental</label>
                             </div>
                         </div>
-    
-                        <div class="reset-all-container">
-                            <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
-                        </div>
+
+                        <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
+
                     </div>
     
                     <div class="disc-container">

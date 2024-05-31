@@ -177,7 +177,10 @@ body {
     position: relative;
     margin-bottom: 10px;
     margin-right: 10px;
+    cursor: pointer; /* Change cursor to pointer */
 }
+
+
 
 .vertical-bar {
     width: 40px; /* Width of the bar */
@@ -189,6 +192,11 @@ body {
     transition: height 0.5s ease-in-out;
 }
 
+.vertical-bar.hovered {
+    background-color: #c5c4c4; /* Light background color on hover */
+    border-radius: 5px; /* Rounded corners on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
 
 .vertical-bar.negative {
     height: 0%; /* Initial height, will be set dynamically */

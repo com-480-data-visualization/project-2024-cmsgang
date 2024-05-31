@@ -184,13 +184,13 @@ body {
     position: absolute;
     bottom: 50%; /* Start from the center */
     background-color: var(--item-color);
-    /* box-shadow: 10px 0px 10px -5px rgba(0, 0, 0, 0.5); */
 
     color: var(--item-color);
     transition: height 0.5s ease-in-out;
 }
 
-.vertical-bar.positive {
+
+.vertical-bar.negative {
     height: 0%; /* Initial height, will be set dynamically */
     top: 50%; /* Align top to the center */
     border-bottom-left-radius: 20px; /* rounded corners */
@@ -200,7 +200,7 @@ body {
 
 }
 
-.vertical-bar.negative {
+.vertical-bar.positive {
     height: 0%; /* Initial height, will be set dynamically */
     bottom: 50%; /* Align bottom to the center */
     border-top-left-radius: 20px; /* rounded corners */
@@ -305,6 +305,14 @@ body {
     padding-top: 5px;
 }
 
+.disc-container image:hover{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    background-color:#e7ffbb;
+}
+
 .disc-container label{
     padding-top: 0px;
     color: var(--text-color);
@@ -367,6 +375,15 @@ body {
     border: 1px solid var(--border-color); /* Button border from your color scheme */
     cursor: pointer; /* Changes the cursor to signify a clickable element */
 }
+
+.grid-button:hover {
+    width: 50px; /* Width of each button */
+    height: 50px; /* Height of each button to make it square */
+    background-color: var(--accent-color); /* Button color from your color scheme */
+    border: 1px solid var(--border-color); /* Button border from your color scheme */
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+}
+
 
 .button-with-label {
     display: flex;

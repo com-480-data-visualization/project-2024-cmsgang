@@ -102,16 +102,17 @@ body {
 
 #main-content {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 0.5fr 3fr 1fr;
     gap: 20px;
     align-items: start; /* Align items at the start */
     justify-items: center; /* Center the controls container */
 }
 
 #list-area {
-    width: 300px; /* Set a fixed width */
+    width: 400px; /* Set a fixed width */
     height: 480px;
     padding: 10px;
+    margin-left:-340px;
     box-sizing: border-box;
     background-color: var(--box-background);
     border: 1px solid var(--border-color);
@@ -307,12 +308,13 @@ body {
     justify-content: center;
     align-items: center;
     gap: 0px;
-    margin: 0px auto;
+    margin-top: -100px;
 }
 
 .reset-all-container{
     align-self:end;
-    padding-right: 120px;
+    padding-right: 270px;
+    margin-bottom: -20px;
 }
 
 #controls-container {
@@ -363,14 +365,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 15px;
 }
 
-.slider-container label {
-    padding-top: 55px;
+.slider-container label{
     font-weight: bold;
     color: var(--secondary-color);
     text-align: center;
+}
+
+.bottom-label {
+    margin-top: 55px;
+}
+
+.top-label {
+    margin-bottom: 50px;
 }
 
 .slider-container input[type="range"] {

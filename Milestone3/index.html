@@ -168,14 +168,16 @@
                         <button class="reset-button" onclick="resetEnergy()">Reset</button>
                     </div>
                     <div class="slider-container">
+                        <label for="loudness" class="top-label"> <span id="loudness-value">Any</span></label>
                         <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
-                        <label for="loudness">Loudness: <span id="loudness-value">Any</span></label>
+                        <label for="loudness" class="bottom-label">Loudness</label>
                         <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
                     </div>
                     
                     <div class="slider-container">
+                        <label for="tempo" class="top-label"><span id="tempo-value">Any</span></label>
                         <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
-                        <label for="tempo">Tempo: <span id="tempo-value">Any</span></label>
+                        <label for="tempo" class="bottom-label">Tempo</label>
                         <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
                     </div>
                 </div>

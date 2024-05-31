@@ -94,7 +94,7 @@ function parseCSV(text) {
         liveness: parseFloat(parts[10]),
         valence: parseFloat(parts[11]),
         loudness: Math.abs(parseFloat(parts[12])),
-        tempo: parseFloat(parts[13]),
+        tempo: Math.round(parseFloat(parts[13])),
         id: parts[14]
     }));
 }
@@ -227,7 +227,13 @@ function updateAttributeBars(songData) {
         negativeBar.style.height = `${height}%`; // Adjust height for negative bar
         
         const label = document.getElementById(`${attr}-label`);
-        label.textContent = `${value.toFixed(2)}`;
+
+        // Tempo should be represented as a whole number
+        if(attr === 'tempo'){
+            label.textContent = `${value.toFixed(0)}`;
+        }else{
+            label.textContent = `${value.toFixed(2)}`;
+        }
     });
 }
 

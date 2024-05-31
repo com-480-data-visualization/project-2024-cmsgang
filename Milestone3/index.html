@@ -118,25 +118,34 @@
                     <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;" >
                     <button class="reset-button" onclick="resetKey()">Reset</button>
                 </div>
-                <div class="button-grid">
-                    <div class="button-with-label">
-                        <label for="danceability-mode" class="grid-label">Danceability</label>
-                        <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
-                    </div>
-                    <div class="button-with-label">
-                        <label for="valence-mode" class="grid-label">Valence</label>
-                        <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
-                    </div>
-                    <div class="button-with-label">
-                        <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
-                        <label for="lyrics-mode" class="grid-label">Lyrics</label>
-                    </div>
-                    <div class="button-with-label">
-                        <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
-                        <label for="instrumental-mode" class="grid-label">Instrumental</label>
+
+                <div class="button-grid-container">
+                    <div class="button-grid">
+                        <div class="button-with-label">
+                            <label for="danceability-mode" class="grid-label">Danceability</label>
+                            <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
+                        </div>
+                        <div class="button-with-label">
+                            <label for="valence-mode" class="grid-label">Valence</label>
+                            <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
+                        </div>
+                        <div class="button-with-label">
+                            <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
+                            <label for="lyrics-mode" class="grid-label">Lyrics</label>
+                        </div>
+                        <div class="button-with-label">
+                            <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
+                            <label for="instrumental-mode" class="grid-label">Instrumental</label>
+                        </div>
                     </div>
 
+                    <div class="reset-all-container">
+                        <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
+                    </div>
                 </div>
+                
+                
+
                 <div class="disc-container">
                     <label for="energy">Energy: <span id="energy-value">Any</span></label>
                     <img src="Images/disc.png" id="disc2" alt="Disc 2" style="height: 120px;" >
@@ -153,10 +162,13 @@
                     <label for="tempo">Tempo: <span id="tempo-value">Any</span></label>
                     <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
                 </div>
-                
             </div>
+
             <div class="button-container">
                 <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleSongArtist(this)">Toggle Song/Artist</button>
+            </div>
+            <div class="reset-all-container">
+                <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
             </div>
         </div>        
         

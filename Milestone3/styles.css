@@ -251,6 +251,7 @@ body {
     padding: 5px;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 20px;
 }
 
@@ -321,6 +322,15 @@ body {
     max-width: 100%; /* Ensure images do not exceed their container */
 }
 
+.button-grid-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
 .button-grid {
     display: grid;
     grid-template-columns: repeat(2, auto); /* Creates two columns */
@@ -328,7 +338,10 @@ body {
     gap: 10px; /* Space between buttons */
     justify-content: center; /* Center the grid horizontally */
     align-items: center; /* Center the grid vertically */
-    padding: 20px; /* Optional: Padding around the entire grid */
+    padding-left: 20px; 
+    padding-right: 20px;
+    padding-top: -0px;
+    padding-bottom: 0px;
 }
 
 .grid-button {

@@ -245,6 +245,28 @@ function applyFiltersAfterReset(attribute, filteredSongs) {
         }
     }
 
+    if(attribute !== 'allbuttons') {
+        if (danceabilityModeIndex !== -1) {
+            const danceabilityMode = danceabilityModes[danceabilityModeIndex].range;
+            filteredSongs = filteredSongs.filter(song => song.danceability >= danceabilityMode[0] && song.danceability <= danceabilityMode[1]);
+        }
+
+        if (valenceModeIndex !== -1) {
+            const valenceMode = valenceModes[valenceModeIndex].range;
+            filteredSongs = filteredSongs.filter(song => song.valence >= valenceMode[0] && song.valence <= valenceMode[1]);
+        }
+
+        if (lyricModeIndex !== -1) {
+            const lyricMode = lyricModes[lyricModeIndex].range;
+            filteredSongs = filteredSongs.filter(song => song.speechiness >= lyricMode[0] && song.speechiness <= lyricMode[1]);
+        }
+
+        if (instrumentalModeIndex !== -1) {
+            const instrumentalMode = instrumentalModes[instrumentalModeIndex].range;
+            filteredSongs = filteredSongs.filter(song => song.instrumentalness >= instrumentalMode[0] && song.instrumentalness <= instrumentalMode[1]);
+        }
+    }
+
     // Add additional filters here as needed
     
     // Update song list with filtered results
@@ -483,3 +505,16 @@ function resetKey() {
     applyFiltersAfterReset('key', window.allSongsData);
 }
 
+/** Resets the Danceability, Valence, Lyrics, and Instrumental buttons */
+function resetButtonFilters(){
+    document.getElementById('danceability-mode').textContent = "Any";
+    document.getElementById('valence-mode').textContent = "Any";
+    document.getElementById('lyrics-mode').textContent = "Any";
+    document.getElementById('instrumental-mode').textContent = "Any";
+    danceabilityModeIndex = -1;
+    valenceModeIndex = -1;
+    lyricModeIndex = -1;
+    instrumentalModeIndex = -1;
+    applyFiltersAfterReset('allbuttons', window.allSongsData);
+
+}

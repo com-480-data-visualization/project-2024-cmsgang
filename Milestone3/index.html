@@ -113,8 +113,11 @@
 
         <div id="controls-container">
             <div id="dj-controls">
-                
-                <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;">
+                <div class="disc-container">
+                    <label for="Key">Key: <span id="key-value">Any</span></label>
+                    <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;" >
+                    <button class="reset-button" onclick="resetKey()">Reset</button>
+                </div>
                 <div class="button-grid">
                     <div class="button-with-label">
                         <label for="danceability-mode" class="grid-label">Danceability</label>

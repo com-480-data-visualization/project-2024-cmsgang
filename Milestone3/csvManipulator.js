@@ -29,6 +29,8 @@ const instrumentalModes = [
     { mode: 'High', range: [0.5, 1] },
 ];
 
+const keys = ["A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"]
+
 let isSpinning = false;
 let initialAngle = 0;
 let currentAngle = 0;
@@ -61,7 +63,7 @@ function parseCSV(text) {
     }).map(parts => ({
         title: parts[0],
         artist: parts[1],
-        key: parseFloat(parts[2]),
+        key: parts[2],
         mode: parseFloat(parts[3]),
         time_signature: parseFloat(parts[4]),
         danceability: parseFloat(parts[5]),
@@ -232,6 +234,13 @@ function applyFiltersAfterReset(attribute, filteredSongs) {
         }
     }
 
+    if(attribute !== 'key') {
+        const keyValue = document.getElementById('key-value').textContent;
+        if (keyValue !== "Any") {
+            filteredSongs = filteredSongs.filter(song => song.key === keyValue);
+        }
+    }
+
     // Add additional filters here as needed
     
     // Update song list with filtered results
@@ -391,7 +400,12 @@ function startDrag(e, discId) {
         }
         lastUpdateTime = Date.now();
 
-        updateEnergyValue(currentAngle);
+        if(discId === 'disc1'){
+            updateKey(currentAngle);
+        }
+        if(discId === 'disc2'){
+            updateEnergyValue(currentAngle);
+        }
         disc.style.transform = 'rotate(' + currentAngle + 'deg)';
     }
 
@@ -441,4 +455,27 @@ document.getElementById('disc2').dataset.rotation = '0';
 document.getElementById('disc1').addEventListener('mousedown', function(e) { startDrag(e, 'disc1'); });
 document.getElementById('disc2').addEventListener('mousedown', function(e) { startDrag(e, 'disc2'); });
 
+
+function updateKey(rotation){
+    let angle = rotation % 360;
+    if (angle < 0) {
+        angle += 360;
+    }
+    var keyIndex = Math.floor(angle / 30);
+    var keySpan = document.getElementById('key-value');
+    keySpan.textContent = keys[keyIndex];
+    filterSongsByKey();
+}
+
+function filterSongsByKey() {
+    const keyValue = document.getElementById('key-value').textContent;
+    const filteredSongs = window.allSongsData.filter(song => song.key === keyValue);
+    applyFiltersAfterReset('key', filteredSongs);
+}
+
+function resetKey() {
+    document.getElementById('key-value').textContent = "Any";
+    document.getElementById('disc1').style.transform = 'rotate(0deg)';
+    applyFiltersAfterReset('key', window.allSongsData);
+}
 

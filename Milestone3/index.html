@@ -28,24 +28,24 @@
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="danceability" class="vertical-label">Danceability</label>
-                        <div class="vertical-bar positive" id="danceability-bar-positive"></div>
-                        <div class="vertical-bar negative" id="danceability-bar-negative"></div>
+                        <div class="vertical-bar positive" id="danceability-bar-positive" onclick="applyFilterFromBar('danceability')"></div>
+                        <div class="vertical-bar negative" id="danceability-bar-negative" onclick="applyFilterFromBar('danceability')"></div>
                         <div class="bar-label" id="danceability-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="energy" class="vertical-label">Energy</label>
-                        <div class="vertical-bar positive" id="energy-bar-positive"></div>
-                        <div class="vertical-bar negative" id="energy-bar-negative"></div>
+                        <div class="vertical-bar positive" id="energy-bar-positive" onclick="applyFilterFromBar('energy')"></div>
+                        <div class="vertical-bar negative" id="energy-bar-negative" onclick="applyFilterFromBar('energy')"></div>
                         <div class="bar-label" id="energy-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="speechiness" class="vertical-label">Speechiness</label>
-                        <div class="vertical-bar positive" id="speechiness-bar-positive"></div>
-                        <div class="vertical-bar negative" id="speechiness-bar-negative"></div>
+                        <div class="vertical-bar positive" id="speechiness-bar-positive" onclick="applyFilterFromBar('speechiness')"></div>
+                        <div class="vertical-bar negative" id="speechiness-bar-negative" onclick="applyFilterFromBar('speechiness')"></div>
                         <div class="bar-label" id="speechiness-label"></div>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="instrumentalness" class="vertical-label">Instrumentalness</label>
-                        <div class="vertical-bar positive" id="instrumentalness-bar-positive"></div>
-                        <div class="vertical-bar negative" id="instrumentalness-bar-negative"></div>
+                        <div class="vertical-bar positive" id="instrumentalness-bar-positive" onclick="applyFilterFromBar('instrumentalness')"></div>
+                        <div class="vertical-bar negative" id="instrumentalness-bar-negative" onclick="applyFilterFromBar('instrumentalness')"></div>
                         <div class="bar-label" id="instrumentalness-label"></div>
                     </div>
                 </div>
@@ -76,24 +76,24 @@
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="valence" class="vertical-label">Valence</label>
-                        <div class="vertical-bar positive" id="valence-bar-positive"></div>
-                        <div class="vertical-bar negative" id="valence-bar-negative"></div>
+                        <div class="vertical-bar positive" id="valence-bar-positive" onclick="applyFilterFromBar('valence')"></div>
+                        <div class="vertical-bar negative" id="valence-bar-negative" onclick="applyFilterFromBar('valence')"></div>
                         <div class="bar-label" id="valence-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="loudness" class="vertical-label">Loudness</label>
-                        <div class="vertical-bar positive" id="loudness-bar-positive"></div>
-                        <div class="vertical-bar negative" id="loudness-bar-negative"></div>
+                        <div class="vertical-bar positive" id="loudness-bar-positive" onclick="applyFilterFromBar('loudness')"></div>
+                        <div class="vertical-bar negative" id="loudness-bar-negative" onclick="applyFilterFromBar('loudness')"></div>
                         <div class="bar-label" id="loudness-label"></div>
                     </div>
                 </div>
                 <div class="attribute">
                     <div class="vertical-bar-container">
                         <label for="tempo" class="vertical-label">Tempo</label>
-                        <div class="vertical-bar positive" id="tempo-bar-positive"></div>
-                        <div class="vertical-bar negative" id="tempo-bar-negative"></div>
+                        <div class="vertical-bar positive" id="tempo-bar-positive" onclick="applyFilterFromBar('tempo')"></div>
+                        <div class="vertical-bar negative" id="tempo-bar-negative" onclick="applyFilterFromBar('tempo')"></div>
                         <div class="bar-label" id="tempo-label"></div>
                     </div>
                 </div>
@@ -111,71 +111,70 @@
             </div>
         </div>
 
-        <div id="controls-container">
-            <div id="dj-controls">
-                <div class="disc-container">
-                    <label for="Key">Key: <span id="key-value">Any</span></label>
-                    <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;" >
-                    <button class="reset-button" onclick="resetKey()">Reset</button>
-                </div>
-
-                <div class="button-grid-container">
-                    <div class="button-grid">
-                        <div class="button-with-label">
-                            <label for="danceability-mode" class="grid-label">Danceability</label>
-                            <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
-                        </div>
-                        <div class="button-with-label">
-                            <label for="valence-mode" class="grid-label">Valence</label>
-                            <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
-                        </div>
-                        <div class="button-with-label">
-                            <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
-                            <label for="lyrics-mode" class="grid-label">Lyrics</label>
-                        </div>
-                        <div class="button-with-label">
-                            <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
-                            <label for="instrumental-mode" class="grid-label">Instrumental</label>
-                        </div>
-                    </div>
-
-                    
-                    <button class="reset-button-grid" onclick="resetButtonFilters()">Reset</button>
-                    
-                </div>
-                
-                
-
-                <div class="disc-container">
-                    <label for="energy">Energy: <span id="energy-value">Any</span></label>
-                    <img src="Images/disc.png" id="disc2" alt="Disc 2" style="height: 120px;" >
-                    <button class="reset-button" onclick="resetEnergy()">Reset</button>
-                </div>
-                <div class="slider-container">
-                    <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
-                    <label for="loudness">Loudness: <span id="loudness-value">Any</span></label>
-                    <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
-                </div>
-                
-                <div class="slider-container">
-                    <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
-                    <label for="tempo">Tempo: <span id="tempo-value">Any</span></label>
-                    <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
-                </div>
-            </div>
-
-            <div class="button-container">
-                <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleSongArtist(this)">Toggle Song/Artist</button>
-            </div>
+        <div id="bottom-box-container">
             <div class="reset-all-container">
                 <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
             </div>
-        </div>        
+            <div id="controls-container">
+                <div id="dj-controls">
+                    <div class="disc-container">
+                        <label for="Key">Key: <span id="key-value">Any</span></label>
+                        <img src="Images/disc.png" id="disc1" alt="Disc 1" style="height: 120px;" >
+                        <button class="reset-button" onclick="resetKey()">Reset</button>
+                    </div>
+    
+                    <div class="button-grid-container">
+                        <div class="button-grid">
+                            <div class="button-with-label">
+                                <label for="danceability-mode" class="grid-label">Danceability</label>
+                                <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
+                            </div>
+                            <div class="button-with-label">
+                                <label for="valence-mode" class="grid-label">Valence</label>
+                                <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
+                            </div>
+                            <div class="button-with-label">
+                                <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
+                                <label for="lyrics-mode" class="grid-label">Lyrics</label>
+                            </div>
+                            <div class="button-with-label">
+                                <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
+                                <label for="instrumental-mode" class="grid-label">Instrumental</label>
+                            </div>
+                        </div>
+
+                        <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
+
+                    </div>
+    
+                    <div class="disc-container">
+                        <label for="energy">Energy: <span id="energy-value">Any</span></label>
+                        <img src="Images/disc.png" id="disc2" alt="Disc 2" style="height: 120px;" >
+                        <button class="reset-button" onclick="resetEnergy()">Reset</button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
+                        <label for="loudness">Loudness: <span id="loudness-value">Any</span></label>
+                        <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
+                        <label for="tempo">Tempo: <span id="tempo-value">Any</span></label>
+                        <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
+                    </div>
+                </div>
+    
+                <div class="button-container">
+                    <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleSongArtist(this)">Toggle Song/Artist</button>
+                </div>
+            </div>   
+        </div>
+     
         
     </div>
 
     <script src="csvManipulator.js"></script>
-    <script src="discController.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <script>

@@ -279,6 +279,8 @@ body {
 .slider-container input[type="range"] {
     transform: rotate(-90deg);
     width: 100px;
+    accent-color: var(--text-color);
+    
 }
 
 .disc-container {

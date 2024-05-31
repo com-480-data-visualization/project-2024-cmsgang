@@ -33,6 +33,8 @@ const instrumentalModes = [
     { mode: 'Any', range: [0, 1]}
 ];
 
+let sortedSongs = [];
+
 const keys = ["A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"]
 
 let isSpinning = false;
@@ -638,4 +640,61 @@ function applyFilterFromBar(attribute){
         }
         filterSongsByInstrumental(instrumentalModes[instrumentalModeIndex].range);
     }
+}
+
+
+// Global variable to track active filters
+let activeFilters = [];
+
+// Toggle button color and update filters
+function toggleButton(button) {
+    button.classList.toggle('green');
+    const filter = getFilterFromButton(button.id);
+    if (button.classList.contains('green')) {
+        activeFilters.push(filter);
+    } else {
+        activeFilters = activeFilters.filter(activeFilter => activeFilter !== filter);
+    }
+    sortSongList();
+}
+
+// Function to get filter attribute from button ID
+function getFilterFromButton(buttonId) {
+    switch (buttonId) {
+        case 'button1':
+            return 'danceability';
+        case 'button2':
+            return 'energy';
+        case 'button3':
+            return 'speechiness';
+        case 'button5':
+            return 'acousticness';
+        case 'button6':
+            return 'instrumentalness';
+        case 'button7':
+            return 'liveness';
+        case 'button9':
+            return 'valence';
+        case 'button10':
+            return 'loudness';
+        case 'button11':
+            return 'tempo';
+        case 'button12':
+            return 'key';
+        default:
+            return null;
+    }
+}
+
+// Function to sort the song data based on the selected filter buttons
+function sortSongList() {
+    let sortedSongs = [...window.allSongsData]; // Make a copy of the data
+
+    activeFilters.forEach(param => {
+        sortedSongs = sortedSongs.sort((a, b) => {
+            return a[param] - b[param];
+        });
+    });
+    sortedSongs = sortedSongs.reverse(); // Reverse the list to show the highest values first
+    displayList(sortedSongs);
 }

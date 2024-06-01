@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive DJ Booth</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="search-bar">
+            <input type="text" id="search-input" onkeyup="filterSongs()" placeholder="Search Songs/Artists...">
+            <div id="search-results">
+                <div id="selected-song" class ="nice-font">No song selected</div>
+                <div id="audio-player-container" style="display: none;">
+                    <div class="play-button-container">
+                        <button id="play-button" class="play-pause-button">
+                            <img src="/Milestone3/Images/playButtonImg.png" alt="Play" id="play-icon" />
+                            <img src="/Milestone3/Images/pauseButtonImg.png" alt="Pause" id="pause-icon" style="display: none;" />
+                        </button>
+                        <svg class="progress-ring" width="50" height="50">
+                            <circle class="progress-ring__circle" r="22" cx="25" cy="25"/>
+                        </svg>
+                    </div>
+                    <audio id="audio-player"></audio>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="main-content">
+            
+            <div id="list-area">
+                <div id="list-title-area">
+                    <button class=" list-options-button header-text-large selected" id="set-list-button" onclick="toggleSongMode(this)">Set List</button>
+
+                    <button class="list-options-button header-text-large" id="artist-button" onclick="toggleArtistMode(this)">Artist List</button>
+                </div>
+                <div id="list-title" >
+                    <hr class="custom-line">
+                </div>
+                
+                <div id="song-container" class="song-container-scrollable">
+                    <!-- Songs will be dynamically loaded into this container -->
+                </div>
+            </div>
+
+
+            
+            <div id="attributes-container" class="hidden">
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="danceability" class="vertical-label">Danceability</label>
+                        <div class="vertical-bar positive" id="danceability-bar-positive" onclick="applyFilterFromBar('danceability')"></div>
+                        <div class="vertical-bar negative" id="danceability-bar-negative" onclick="applyFilterFromBar('danceability')"></div>
+                        <div class="bar-label" id="danceability-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="energy" class="vertical-label">Energy</label>
+                        <div class="vertical-bar positive" id="energy-bar-positive" onclick="applyFilterFromBar('energy')"></div>
+                        <div class="vertical-bar negative" id="energy-bar-negative" onclick="applyFilterFromBar('energy')"></div>
+                        <div class="bar-label" id="energy-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="speechiness" class="vertical-label">Speechiness</label>
+                        <div class="vertical-bar positive" id="speechiness-bar-positive" onclick="applyFilterFromBar('speechiness')"></div>
+                        <div class="vertical-bar negative" id="speechiness-bar-negative" onclick="applyFilterFromBar('speechiness')"></div>
+                        <div class="bar-label" id="speechiness-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="acousticness" class="vertical-label">Acousticness</label>
+                        <div class="vertical-bar positive" id="acousticness-bar-positive"></div>
+                        <div class="vertical-bar negative" id="acousticness-bar-negative"></div>
+                        <div class="bar-label" id="acousticness-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="instrumentalness" class="vertical-label">Instrumentalness</label>
+                        <div class="vertical-bar positive" id="instrumentalness-bar-positive" onclick="applyFilterFromBar('instrumentalness')"></div>
+                        <div class="vertical-bar negative" id="instrumentalness-bar-negative" onclick="applyFilterFromBar('instrumentalness')"></div>
+                        <div class="bar-label" id="instrumentalness-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="liveness" class="vertical-label">Liveness</label>
+                        <div class="vertical-bar positive" id="liveness-bar-positive"></div>
+                        <div class="vertical-bar negative" id="liveness-bar-negative"></div>
+                        <div class="bar-label" id="liveness-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="valence" class="vertical-label">Valence</label>
+                        <div class="vertical-bar positive" id="valence-bar-positive" onclick="applyFilterFromBar('valence')"></div>
+                        <div class="vertical-bar negative" id="valence-bar-negative" onclick="applyFilterFromBar('valence')"></div>
+                        <div class="bar-label" id="valence-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="loudness" class="vertical-label">Loudness</label>
+                        <div class="vertical-bar positive" id="loudness-bar-positive" onclick="applyFilterFromBar('loudness')"></div>
+                        <div class="vertical-bar negative" id="loudness-bar-negative" onclick="applyFilterFromBar('loudness')"></div>
+                        <div class="bar-label" id="loudness-label"></div>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="vertical-bar-container">
+                        <label for="tempo" class="vertical-label">Tempo</label>
+                        <div class="vertical-bar positive" id="tempo-bar-positive" onclick="applyFilterFromBar('tempo')"></div>
+                        <div class="vertical-bar negative" id="tempo-bar-negative" onclick="applyFilterFromBar('tempo')"></div>
+                        <div class="bar-label" id="tempo-label"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=video-container>
+                <video id="myVideo" width="360" autoplay loop preload="auto" muted>
+                    <source src="/Milestone3/vids/happy_high_high.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+
+           
+        </div>
+
+
+        
+        <div id="bottom-box-container">
+            <div id="controls-container">
+                
+                <div id="small-button-grid-container" class="soundboard">
+                    <div id="small-button-grid-container">
+                        <div id="controls-column" class="controls-column">
+                            <h3 class="soundboard-title header-text-frame">SORT MACHINE</h3>
+                            <div class="small-button-grid">
+                                <button class="small-grid-button" id="button1" onclick="toggleButton(this)">Dance</button>
+                                <button class="small-grid-button" id="button2" onclick="toggleButton(this)">Energy</button>
+                                <button class="small-grid-button" id="button3" onclick="toggleButton(this)">Speech</button>
+                                <button class="small-grid-button" id="button5" onclick="toggleButton(this)">Acoustic</button>
+                                <button class="small-grid-button" id="button6" onclick="toggleButton(this)">Instrum</button>
+                                <button class="small-grid-button" id="button7" onclick="toggleButton(this)">Liveness</button>
+                                <button class="small-grid-button" id="button9" onclick="toggleButton(this)">Valence</button>
+                                <button class="small-grid-button" id="button10" onclick="toggleButton(this)">Loudness</button>
+                                <button class="small-grid-button" id="button11" onclick="toggleButton(this)">Tempo</button>
+    
+                            </div>
+                        </div>
+                        
+                        <div class="controls-column">
+                            <div class="button-with-label">
+                                <label class="reset-label">ORDER</label>
+                                <img src="/Milestone3/Images/upArrow.png" id="sort-asc" class="sort-arrow" onclick="toggleSortDirection('Asc.')">
+                                <img src="/Milestone3/Images/downArrowGray.png" id="sort-desc" class="sort-arrow" onclick="toggleSortDirection('Desc.')">
+                            </div>
+                            <div class="reset-button-container">
+                                <button class="reset-button-circle" onclick="resetAllModes()"></button>
+                                <label class="reset-label">RESET</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+    
+                
+                <div id="dj-controls">
+                    <div class="disc-container">
+                        <label for="Key" class="top-label-disc header-text-frame "><span id="key-value">Any</span></label>
+                        <img src="/Milestone3/Images/disc_normal.png" id="disc1" alt="Disc 1" style="height: 120px;" onmouseenter="toggleDiscImage('on', 'disc1')" onmouseleave="toggleDiscImage('off', 'disc1')">
+                        <label for="Key" class="bottom-label-disc header-text-frame header-nobg">Key</label>
+
+                        <button class="reset-button" onclick="resetKey()">Reset</button>                      
+                    </div>
+                    <div class="button-grid-container">
+                        <div class="button-grid">
+                            <div class="button-with-label">
+                                <label for="danceability-mode" id="dance-dj-label" class="grid-label header-text-frame header-nobg">Danceability</label>
+                                <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
+                            </div>
+                            <div class="button-with-label">
+                                <label for="valence-mode" id="mood-dj-label"class="grid-label header-text-frame header-nobg">Mood</label>
+                                <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
+                            </div>
+                            <div class="button-with-label">
+                                <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
+                                <label for="lyrics-mode" id="speech-dj-label" class="grid-label header-text-frame header-nobg">Speech</label>
+                            </div>
+                            <div class="button-with-label">
+                                <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
+                                <label for="instrumental-mode" id="ins-dj-label"class="grid-label header-text-frame header-nobg">Instrumental</label>
+                            </div>
+                        </div>
+
+                        <button class="reset-button" onclick="resetButtonFilters()">Reset</button>
+
+                    </div>
+
+    
+                    <div class="disc-container">
+                        <label for="energy" class="top-label-disc header-text-frame"><span id="energy-value">Any</span></label>
+                        <img src="/Milestone3/Images/disc_normal.png" id="disc2" alt="Disc 2" style="height: 120px;" onmouseenter="toggleDiscImage('on', 'disc2')" onmouseleave="toggleDiscImage('off', 'disc2')" >
+                        <label for="energy" id="energy-dj-label" class="bottom-label-disc header-text-frame header-nobg">Energy</label>
+                        <button class="reset-button" onclick="resetEnergy()">Reset</button>
+                    </div>
+                    <div class="slider-container">
+                        <label for="loudness" class="top-label header-text-frame"> <span id="loudness-value">Any</span></label>
+                        <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
+                        <label for="loudness" id="loudness-slider-label" class="bottom-label header-text-frame header-nobg">Loudness</label>
+                        <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <label for="tempo" class="top-label header-text-frame"><span id="tempo-value">Any</span></label>
+                        <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
+                        <label for="tempo" id="tempo-slider-label" class="bottom-label header-text-frame header-nobg">Tempo</label>
+                        <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
+                    </div>
+                </div>
+            </div> 
+            <button class="reset-button reset-button-all" onclick="resetAllFilters()">Reset All Filters</button>
+  
+        </div>
+
+       
+     
+        
+    </div>
+
+    <script src="/Milestone3/csvManipulator.js"></script>
+    <script src="/Milestone3/spotifyAPI.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+</body>
+
+
+</html>

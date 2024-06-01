@@ -46,7 +46,7 @@ let artistData = [];
 let artistMode = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('spotify_top_songs_audio_features.csv')
+    fetch('/Milestone3/spotify_top_songs_audio_features.csv')
         .then(response => response.text())
         .then(data => {
             const parsedData = parseCSV(data);
@@ -971,11 +971,11 @@ function toggleSortDirection(buttonSortDirection){
     sortDirection = buttonSortDirection;
     sortSongList();
     if(sortDirection === 'Asc.'){
-        document.getElementById('sort-asc').src = 'Images/upArrow.png';
-        document.getElementById('sort-desc').src = 'Images/downArrowGray.png';
+        document.getElementById('sort-asc').src = '/Milestone3/Images/upArrow.png';
+        document.getElementById('sort-desc').src = '/Milestone3/Images/downArrowGray.png';
     }else{
-        document.getElementById('sort-asc').src = 'Images/upArrowGray.png';
-        document.getElementById('sort-desc').src = 'Images/downArrow.png';
+        document.getElementById('sort-asc').src = '/Milestone3/Images/upArrowGray.png';
+        document.getElementById('sort-desc').src = '/Milestone3/Images/downArrow.png';
     }
 
 }
@@ -994,9 +994,9 @@ function resetAllModes() {
 
 function toggleDiscImage(action, discID){
     if(action === "on"){
-        document.getElementById(discID).src = 'Images/disc_green.png';
+        document.getElementById(discID).src = '/Milestone3/Images/disc_green.png';
     }else{
-        document.getElementById(discID).src = 'Images/disc_normal.png';
+        document.getElementById(discID).src = '/Milestone3/Images/disc_normal.png';
     }
 }
 
@@ -1018,9 +1018,9 @@ function value_to_word(value) {
 }
 
 function valence_to_emotion(value) {
-    if (value < 0.25) {
+    if (value < 0.15) {
         return "sad";
-    } else if (value < 0.5) {
+    } else if (value < 0.35) {
         return "ok";
     } else {
         return "happy";

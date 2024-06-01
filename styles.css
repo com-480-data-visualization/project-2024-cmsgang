@@ -1,0 +1,699 @@
+:root { 
+    --primary-color: #F4FFFF; 
+    --secondary-color: #1A1141;  
+    --accent-color: #e7ffbb; 
+    --accent-color: #ff7332;
+    --background-color: #FFE5F5;
+    --box-background: #ffc6dc;
+    --tertiary-color: #342672; 
+    --text-color-light: #fff;
+    --item-color: #ffffff;
+    --dj-background-color:#c9b5ce;
+    --bar-shadow-color: #e0a3c0;
+    --small-gray-button-color: #3b3b3b9e;
+    --small-green-button-color: #a88bff;
+    --small-green-button-hover: #7353d1;
+}
+
+body {
+    margin: 0;
+    font-family: 'Gill Sans', sans-serif;
+    background: var(--background-color);
+
+   
+}
+
+/* Add a box around any element */
+.header-text-frame{
+    padding: 3px;
+    margin: 10px;
+    width:max-content;
+    height:max-content;
+    background-color: var(--primary-color);
+    text-align: center;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+    justify-content: center;
+    font-weight: bold;
+} 
+
+.header-text-frame-shadow{
+    box-shadow: 3px 3px var(--tertiary-color);
+}
+
+.header-text-large{
+    font-size: 24px;
+}
+
+.header-nobg{
+    background-color:transparent; 
+}
+
+.nice-font{
+    text-align: center;
+    margin-top: 10px;
+    color:var(--secondary-color); 
+    font-size: 18px;
+    font-weight: bold; 
+    font-style: italic;
+}
+
+.list-options-button {
+    padding: 3px;
+    margin: 10px;
+    width:max-content;
+    height:max-content;
+    background-color: var(--primary-color);
+    text-align: center;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 3px 3px var(--tertiary-color);
+
+}
+
+.list-options-button:hover {
+    background-color: var(--accent-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
+    box-shadow: 3px 3px var(--secondary-color);
+    border-radius: 5px;
+
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+}
+
+.list-options-button.selected{
+    background-color: var(--accent-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
+    box-shadow: 3px 3px var(--secondary-color);
+    border-radius: 5px;
+
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    padding: 20px;
+    max-width:1300px;
+    margin: 0 auto;
+}
+
+#search-bar {
+    grid-column: 1 / -1;
+    padding: 10px;
+    text-align: center;
+}
+
+#search-bar input[type="text"] {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border: none;
+    background-color: var(--background-color);
+    border-bottom: 2px solid var(--tertiary-color);
+    margin: 0 auto;
+    display: block;
+}
+
+#search-results{
+    display: flex;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+
+}
+#audio-player-container{
+    display: none;
+    padding-top: 5px;
+}
+.play-button-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-pause-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.play-pause-button img {
+    width: 100%;
+    height: 80%;
+    background: transparent;
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.progress-ring__circle {
+    stroke:#4C184C;
+    stroke-dasharray: 138;
+    stroke-dashoffset: 138;
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-width: 4;
+    fill:transparent;
+}
+
+#main-content {
+    display: grid;
+    /* grid-template-columns: 0.5fr 3fr 1fr; */
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 20px;
+    align-items: start; /* Align items at the start */
+    justify-items: center; /* Center the controls container */
+    margin-left: -70px; 
+}
+
+#list-area {
+    width: 400px; /* Set a fixed width */
+    height: 480px;
+    padding: 10px;
+    margin-left:auto;
+    box-sizing: border-box;
+    background-color: var(--box-background);
+    border: 2px solid var(--tertiary-color);
+    text-align: center;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+#list-title-area{
+    display:flex; 
+    flex-direction: row;
+    justify-content:space-evenly
+}
+
+.item.hover{
+    background-color: var(--accent-color);
+    box-shadow: 1px 1px var(--accent-color);
+    border-radius: 5px;
+}
+
+
+.song-container-scrollable {
+    width: 100%;
+    flex: 1 1 auto; /* Allow the song container to grow */
+    overflow-y: auto; /* Enable scrolling for the song list */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.song-box {
+    background-color: var(--primary-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 3px 3px var(--tertiary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.song-title, .song-artist {
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+}
+
+.song-title {
+    font-weight: bold;
+    flex: 1 1 auto;
+    text-align: left; /* Align title to the left */
+    margin-right: 10px; /* Space between title and artist */
+    max-width: 60%; /* Adjust based on your layout */
+}
+
+.song-artist {
+    font-style: italic;
+    flex: 0 1 auto;
+    text-align: right; /* Align artist to the right */
+    max-width: 35%; /* Adjust based on your layout */
+}
+
+
+.song-box:hover {
+    background-color: var(--accent-color); /* Change background color on hover */
+    box-shadow: 1px 1px var(--accent-color); 
+}
+
+.song-box.selected {
+    background-color: var(--accent-color); /* Change background color when selected */
+    box-shadow: 1px 1px var(--accent-color); 
+}
+
+/* Scroll bar */
+.song-container-scrollable {
+    scrollbar-width: thick; 
+    scrollbar-color: var(--tertiary-color) transparent; /* Thumb and track color */
+    cursor : pointer;
+}
+
+#attributes-container {
+    display: flex; /* Use flexbox */
+    justify-content: space-around; /* Distribute bars evenly */
+    align-items: flex-end; /* Align the bars to the bottom */
+    width: 100%;
+    max-width: 800px;
+    margin: 150px auto 0 auto; /* Adjust top margin to move bars lower */
+    /* Add space to the left of the bar container */
+    padding-left: 20px;
+    text-align: center;
+}
+
+
+.hidden {
+    display: none;
+}
+
+#attributes-container h2 {
+    margin-bottom: 20px; /* Space below the title */
+} 
+.attribute {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    flex: 1; /* Equal width for all bars */
+}
+
+.vertical-bar-container {
+    display: flex;
+    flex-direction: column; /* Arrange label and bar in a column */
+    align-items: center;
+    width: 40px; /* Adjust as needed */
+    height: 150px; /* Total height of the bar container */
+    position: relative;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.vertical-bar {
+    width: 40px; /* Width of the bar */
+    position: absolute;
+    bottom: 50%; /* Start from the center */
+    background-color: var(--primary-color);
+    transition: height 0.5s ease-in-out;
+}
+
+.vertical-bar.hovered {
+    background-color: var(--accent-color); /* Light background color on hover */
+    box-shadow: 1px 1px var(--accent-color);
+    /*border-radius: 5px; /* Rounded corners on hover */
+    /*transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+
+.vertical-bar.negative {
+    height: 0%; /* Initial height, will be set dynamically */
+    top: 50%; /* Align top to the center */
+    border-bottom-left-radius: 20px; /* rounded corners */
+    border-bottom-right-radius: 20px; /* rounded corners */
+    box-shadow: 0px 3px 0px 1px var(--bar-shadow-color);
+}
+
+
+.vertical-bar.positive {
+    height: 0%; /* Initial height, will be set dynamically */
+    bottom: 47%; /* Align bottom to the center */
+    border-top-left-radius: 20px; /* rounded corners */
+    border-top-right-radius: 20px; /* rounded corners */
+    box-shadow: 0px -3px 0px 1px var(--bar-shadow-color);
+
+}
+
+.vertical-label {
+    transform: rotate(-90deg);
+    transform-origin: left center;
+    white-space: nowrap;
+    position: absolute;
+    left: -15px; /* Adjust as needed to bring labels closer to the bars */
+    bottom: 25%; /* Center vertically */
+    text-align: center;
+    color: var(--tertiary-color);
+    font-weight: bold;
+}
+
+.bar-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--tertiary-color);
+    font-weight: bold;
+}
+
+#stickman-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
+}
+
+.reset-all-container{
+    align-self:end;
+    padding-right: 120px;
+    margin-bottom: -30px;
+}
+
+#controls-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    gap: 20px;
+    margin: 20px auto; /* Center container and add spacing */
+}
+
+/*whole bottom area */
+#bottom-box-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    gap: 0px;
+    margin-top: -100px;
+    /* move entire bottom box */
+    margin-left: -100px; 
+    
+}
+
+.reset-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+
+    border-radius: 20px;
+    box-shadow: 2px 2px var(--accent-color);
+    gap: 30px;
+    width: max-content; 
+}
+.reset-button-all{
+    height: min-content; 
+    margin-left: 360px; 
+    margin-top:-48px;  
+}
+
+.reset-button:hover{
+    background-color: var(--accent-color);
+}
+
+/* whole dj booth */
+#dj-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid var(--tertiary-color);
+    background-color: var(--box-background);
+    border-radius: 6px;
+    margin-top:80px;
+    padding-left: 15px; 
+    padding-bottom:10px; 
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.slider-container label{
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.bottom-label {
+    margin-top: 55px;
+}
+
+.top-label {
+    margin-bottom: 50px;
+}
+
+.bottom-label-disc {
+    margin-top: 10px;
+}
+
+.top-label-disc {
+    margin-bottom: 10px;
+}
+
+.slider-container input[type="range"] {
+    transform: rotate(-90deg);
+    width: 100px;
+    accent-color: var(--tertiary-color);   
+}
+
+.disc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
+    margin-top:10px;
+}
+
+.disc-container label{
+    padding-top: 0px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.disc-container img{
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.custom-line {
+    border: none;
+    height: 2px;
+    background-color: var(--tertiary-color);
+    margin: 5px 0; /* Adjust the space around the lines */
+}
+
+#toggle-song-artist {
+    width: 100px;
+    height: 50px;
+}
+
+#song-artist-list h3 {
+    color: var(--tertiary-color);
+}
+
+#crowd-reaction img {
+    max-width: 100%; /* Ensure images do not exceed their container */
+}
+
+/* Styles for the small button grid container */
+.soundboard {
+    background-color: var(--box-background);
+    border: 2px solid var(--tertiary-color);
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content; /* Adjust width based on content */
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: -50px; 
+
+}
+
+/* Styles for the small button grid */
+#small-button-grid-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.controls-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.soundboard-title {
+    margin-bottom: 5px;
+    margin-top: -20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.small-button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 60px); /* 4 columns, adjust size as needed */
+    grid-gap: 4px; /* Space between buttons */
+}
+
+.small-grid-button {
+    width: 60px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    background-color: var(--primary-color); /* Initial color */
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 30px; /* Center text vertically */
+    box-shadow: 3px 3px var(--secondary-color);
+}
+
+.small-grid-button:hover {
+    background-color: var(--accent-color); /* Color on hover */
+}
+
+.small-grid-button.green {
+    background-color: var(--small-green-button-color); /* Color when clicked */
+}
+
+.small-grid-button.green:hover {
+    background-color: var(--small-green-button-hover); /* Color on hover */
+}
+
+.button-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px; /* Space between button grid and controls */
+}
+
+.sort-arrow {
+    width: 30px; 
+    height: 30px; 
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+/* Styles for the reset button */
+.reset-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reset-button-circle {
+    width: 30px;
+    height: 30px;
+    background-color: var(--tertiary-color);
+    border: none;
+    border-radius: 50%; /* Make it a circle */
+    cursor: pointer;
+    box-shadow: 2px 2px var(--accent-color);
+
+}
+
+.reset-button-circle:hover {
+    background-color: var(--accent-color);
+}
+
+.reset-label {
+    margin-top: 5px; /* Space between the button and the label */
+    color: var(--secondary-color); /* Adjust color to fit the theme */
+    font-size: 11px; /* Adjust size as needed */
+    font-weight: bold;
+    text-align: center;
+}
+
+.button-grid-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* Creates two columns */
+    grid-template-rows: repeat(2, auto); /* Creates two rows */
+    gap: 10px; /* Space between buttons */
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically */
+    
+
+}
+
+.grid-button {
+    width: 50px; /* Width of each button */
+    height: 50px; /* Height of each button to make it square */
+    background-color: var(--primary-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+    box-shadow: 3px 3px var(--secondary-color);
+    margin: 3px;
+}
+
+.grid-button:hover {
+    width: 50px; /* Width of each button */
+    height: 50px; /* Height of each button to make it square */
+    background-color: var(--accent-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
+    box-shadow: 3px 3px var(--secondary-color);
+
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+}
+
+
+.button-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-top: -10px;
+}
+
+.bar {
+    fill: var(--primary-color);
+}
+
+.dj-button-text {
+    font-size: 20px; /* Adjust the font size as needed */
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    padding-right:20px;
+}
+
+
+
+

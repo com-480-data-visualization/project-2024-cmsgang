@@ -47,6 +47,12 @@ body {
     font-size: 24px;
 }
 
+.nice-font{
+    font-size: 18px;
+    font-weight: bold; 
+    font-style: italic;
+}
+
 .container {
     display: grid;
     grid-template-rows: auto 1fr auto;

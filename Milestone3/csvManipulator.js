@@ -414,7 +414,7 @@ function applyFiltersAfterReset(attribute, filteredSongs) {
 
     // Sort songs based on the active 
     // Update song list with filtered results
-    displayList(filteredSongs);
+    sortSongList();
 }
 
 function resetTempoFilter() {
@@ -728,6 +728,12 @@ function resetAllFilters(){
     resetLoudnessFilter();
     resetKey();
     resetButtonFilters();
+
+    if (artistMode) {
+        applyFiltersAfterReset('all', artistData);
+    } else {
+        applyFiltersAfterReset('all', window.allSongsData);
+    }
 }
 
 function setHighlight(element){
@@ -889,20 +895,73 @@ function getFilterFromButton(buttonId) {
     }
 }
 
+// Applies the filters to the given song list
+function applyCurrentFilters(songs) {
+    let filteredSongs = [...songs];
+    
+    const loudnessSlider = document.getElementById('loudness-slider');
+    const loudnessValue = parseFloat(loudnessSlider.value);
+    if (loudnessValue !== parseFloat(loudnessSlider.min)) {
+        filteredSongs = filteredSongs.filter(song => song.loudness >= loudnessValue - 1 && song.loudness <= loudnessValue + 1);
+    }
+
+    const tempoSlider = document.getElementById('tempo-slider');
+    const tempoValue = parseFloat(tempoSlider.value);
+    if (tempoValue !== parseFloat(tempoSlider.min)) {
+        filteredSongs = filteredSongs.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
+    }
+
+    const energyValue = document.getElementById('energy-value').textContent;
+    if (energyValue !== "Any") {
+        const floatEnergyValue = parseFloat(energyValue);
+        filteredSongs = filteredSongs.filter(song => Math.abs(song.energy - floatEnergyValue) <= 0.05);
+    }
+
+    const keyValue = document.getElementById('key-value').textContent;
+    if (keyValue !== "Any") {
+        filteredSongs = filteredSongs.filter(song => song.key === keyValue);
+    }
+
+    if (danceabilityModeIndex !== -1) {
+        const danceabilityMode = danceabilityModes[danceabilityModeIndex].range;
+        filteredSongs = filteredSongs.filter(song => song.danceability >= danceabilityMode[0] && song.danceability <= danceabilityMode[1]);
+    }
+
+    if (valenceModeIndex !== -1) {
+        const valenceMode = valenceModes[valenceModeIndex].range;
+        filteredSongs = filteredSongs.filter(song => song.valence >= valenceMode[0] && song.valence <= valenceMode[1]);
+    }
+
+    if (lyricModeIndex !== -1) {
+        const lyricMode = lyricModes[lyricModeIndex].range;
+        filteredSongs = filteredSongs.filter(song => song.speechiness >= lyricMode[0] && song.speechiness <= lyricMode[1]);
+    }
+
+    if (instrumentalModeIndex !== -1) {
+        const instrumentalMode = instrumentalModes[instrumentalModeIndex].range;
+        filteredSongs = filteredSongs.filter(song => song.instrumentalness >= instrumentalMode[0] && song.instrumentalness <= instrumentalMode[1]);
+    }
+
+    return filteredSongs;
+}
+
+
+
 // Function to sort the song data based on the selected filter buttons
 function sortSongList() {
-    let sortedSongs = artistMode ? artistData : [...window.allSongsData]; // Make a copy of the data
+    let songsToSort = artistMode ? artistData : [...window.allSongsData];
+    
+    // Apply current filters
+    songsToSort = applyCurrentFilters(songsToSort);
 
     activeFilters.forEach(param => {
-        sortedSongs = sortedSongs.sort((a, b) => {
-            return a[param] - b[param];
-        });
+        songsToSort = songsToSort.sort((a, b) => a[param] - b[param]);
     });
 
-    if(sortDirection === 'Asc.'){
-        displayList(sortedSongs);
-    }else{
-        displayList(sortedSongs.reverse());
+    if (sortDirection === 'Asc.') {
+        displayList(songsToSort);
+    } else {
+        displayList(songsToSort.reverse());
     }
 }
 

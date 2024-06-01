@@ -783,8 +783,13 @@ function toggleDiscImage(action, discID){
     }else{
         document.getElementById(discID).src = 'Images/disc_normal.png';
     }
-
-
-    
-
 }
+
+
+
+
+
+
+
+
+

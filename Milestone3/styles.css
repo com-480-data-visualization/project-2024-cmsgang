@@ -45,6 +45,10 @@ body {
     font-size: 24px;
 }
 
+.header-nobg{
+    background-color:transparent; 
+}
+
 .nice-font{
     text-align: center;
     margin-top: 10px;
@@ -215,26 +219,6 @@ body {
     box-shadow: 1px 1px var(--accent-color); 
 }
 
-/* Styling the scrollbar for the song container
-.song-container-scrollable::-webkit-scrollbar {
-    width: 8px; 
-}
-
-.song-container-scrollable::-webkit-scrollbar-track {
-    background: var(--box-background); 
-    border-radius: 10px; 
-} */
-
-/* .song-container-scrollable::-webkit-scrollbar-thumb {
-    background: var(--tertiary-color);
-    border-radius: 10px; 
-    border: 2px solid var(--box-background); 
-}
-
-.song-container-scrollable::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color); 
-} */
-
 /* Scroll bar */
 .song-container-scrollable {
     scrollbar-width: thick; 
@@ -373,8 +357,7 @@ body {
     border: none;
     padding: 5px;
     cursor: pointer;
-    margin-top: 30px;
-    margin-bottom: 10px;
+
     border-radius: 20px;
     box-shadow: 2px 2px var(--accent-color);
     gap: 30px;
@@ -393,7 +376,9 @@ body {
     border: 2px solid var(--tertiary-color);
     background-color: var(--box-background);
     border-radius: 6px;
-    margin-top:20px;
+    margin-top:80px;
+    padding-left: 15px; 
+    padding-bottom:10px; 
 }
 
 .slider-container {
@@ -501,7 +486,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-  
 }
 
 .soundboard-title {
@@ -513,20 +497,19 @@ body {
 
 .small-button-grid {
     display: grid;
-    grid-template-columns: repeat(3, 100px); /* 4 columns, adjust size as needed */
-    grid-gap: 10px; /* Space between buttons */
-
+    grid-template-columns: repeat(3, 60px); /* 4 columns, adjust size as needed */
+    grid-gap: 4px; /* Space between buttons */
 }
 
 .small-grid-button {
-    width: 100px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
+    width: 60px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
     background-color: var(--primary-color); /* Initial color */
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
     text-align: center;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 30px; /* Center text vertically */
     box-shadow: 3px 3px var(--secondary-color);
 }
@@ -557,8 +540,8 @@ body {
 }
 
 .sort-arrow {
-    width: 30px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
+    width: 30px; 
+    height: 30px; 
     cursor: pointer;
     margin: 5px 0;
 }
@@ -568,7 +551,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5px; /* Adjust as needed */
 }
 
 .reset-button-circle {
@@ -651,4 +633,8 @@ body {
 .dj-button-text {
     font-size: 20px; /* Adjust the font size as needed */
 }
+
+
+
+
 

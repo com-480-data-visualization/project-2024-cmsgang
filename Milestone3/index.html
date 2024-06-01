@@ -31,7 +31,7 @@
         <div id="main-content">
             <div id="list-area">
                 <div id="list-title" >
-                    <div class="header-text-frame header-text-large">Set List</div>
+                    <div class="header-text-frame header-text-large header-text-frame-shadow">Set List</div>
                     <hr class="custom-line">
                 </div>
                 <div id="song-container" class="song-container-scrollable">
@@ -168,29 +168,32 @@
                 
                 <div id="dj-controls">
                     <div class="disc-container">
-                        <label for="Key">Key: <span id="key-value">Any</span></label>
+                        <label for="Key" class="top-label-disc header-text-frame "><span id="key-value">Any</span></label>
                         <!-- <img src="Images/disc_shadow.png" id="disc1s" alt="Disc 1S" style="height: 120px;" >
                         <img src="Images/disc_green.png" id="disc1g" alt="Disc 1G" style="height: 120px;" > -->
+
                         <img src="Images/disc_normal.png" id="disc1" alt="Disc 1" style="height: 120px;" >
+                        <label for="Key" class="bottom-label-disc header-text-frame">Key</label>
+
                         <button class="reset-button" onclick="resetKey()">Reset</button>                      
                     </div>
                     <div class="button-grid-container">
                         <div class="button-grid">
                             <div class="button-with-label">
-                                <label for="danceability-mode" class="grid-label">Danceability</label>
+                                <label for="danceability-mode" class="grid-label header-text-frame">Danceability</label>
                                 <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
                             </div>
                             <div class="button-with-label">
-                                <label for="valence-mode" class="grid-label">Mood</label>
+                                <label for="valence-mode" class="grid-label header-text-frame">Mood</label>
                                 <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
                             </div>
                             <div class="button-with-label">
                                 <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
-                                <label for="lyrics-mode" class="grid-label">Speech</label>
+                                <label for="lyrics-mode" class="grid-label header-text-frame">Speech</label>
                             </div>
                             <div class="button-with-label">
                                 <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
-                                <label for="instrumental-mode" class="grid-label">Instrumental</label>
+                                <label for="instrumental-mode" class="grid-label header-text-frame">Instrumental</label>
                             </div>
                         </div>
 
@@ -200,23 +203,24 @@
 
     
                     <div class="disc-container">
-                        <label for="energy">Energy: <span id="energy-value">Any</span></label>
+                        <label for="energy" class="top-label-disc header-text-frame"><span id="energy-value">Any</span></label>
                         <img src="Images/disc_normal.png" id="disc2" alt="Disc 2" style="height: 120px;" >
                         <!-- <img src="Images/disc_green.png" id="disc2g" alt="Disc 2G" style="height: 120px;" >
                         <img src="Images/disc_shadow.png" id="disc2s" alt="Disc 2S" style="height: 120px;" > -->
+                        <label for="energy" class="bottom-label-disc header-text-frame">Energy</label>
                         <button class="reset-button" onclick="resetEnergy()">Reset</button>
                     </div>
                     <div class="slider-container">
-                        <label for="loudness" class="top-label"> <span id="loudness-value">Any</span></label>
+                        <label for="loudness" class="top-label header-text-frame"> <span id="loudness-value">Any</span></label>
                         <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
-                        <label for="loudness" class="bottom-label">Loudness</label>
+                        <label for="loudness" class="bottom-label header-text-frame">Loudness</label>
                         <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
                     </div>
                     
                     <div class="slider-container">
-                        <label for="tempo" class="top-label"><span id="tempo-value">Any</span></label>
+                        <label for="tempo" class="top-label header-text-frame"><span id="tempo-value">Any</span></label>
                         <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
-                        <label for="tempo" class="bottom-label">Tempo</label>
+                        <label for="tempo" class="bottom-label header-text-frame">Tempo</label>
                         <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
                     </div>
                 </div>

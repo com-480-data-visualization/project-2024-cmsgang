@@ -15,8 +15,6 @@
     --small-green-button-hover: #7353d1;
 }
 
-
-
 body {
     margin: 0;
     font-family: 'Gill Sans', sans-serif;
@@ -25,6 +23,7 @@ body {
    
 }
 
+/* Add a box around any element */
 .header-text-frame{
     padding: 3px;
     margin: 10px;
@@ -34,10 +33,16 @@ body {
     text-align: center;
     border: 1px solid var(--tertiary-color);
     border-radius: 5px;
-    box-shadow: 3px 3px var(--tertiary-color);
     justify-content: center;
     font-weight: bold;
 } 
+
+.header-text-frame-shadow{
+    box-shadow: 3px 3px var(--tertiary-color);
+
+
+}
+
 .header-text-large{
     font-size: 24px;
 }
@@ -131,7 +136,7 @@ body {
     gap: 20px;
     align-items: start; /* Align items at the start */
     justify-items: center; /* Center the controls container */
-    /* margin-left: -50px;  */
+    margin-left: -50px; 
 }
 
 #list-area {
@@ -376,7 +381,7 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    border: 3px solid var(--tertiary-color);
+    border: 2px solid var(--tertiary-color);
     background-color: var(--box-background);
     border-radius: 6px;
     margin-top:20px;
@@ -403,6 +408,14 @@ body {
     margin-bottom: 50px;
 }
 
+.bottom-label-disc {
+    margin-top: 10px;
+}
+
+.top-label-disc {
+    margin-bottom: 10px;
+}
+
 .slider-container input[type="range"] {
     transform: rotate(-90deg);
     width: 100px;
@@ -413,8 +426,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5px;
     position: relative; 
+    margin-top:10px;
 }
 
 .disc-container label{
@@ -464,6 +477,8 @@ body {
     width: fit-content; /* Adjust width based on content */
     margin-left: auto;
     margin-right: auto;
+    margin-left: -50px; 
+
 }
 
 /* Styles for the small button grid */

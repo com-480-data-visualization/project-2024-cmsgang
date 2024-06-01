@@ -572,12 +572,16 @@ body {
 .reset-button-circle {
     width: 30px;
     height: 30px;
-    background-color: var(--accent-color);
+    background-color: var(--tertiary-color);
     border: none;
     border-radius: 50%; /* Make it a circle */
     cursor: pointer;
-    box-shadow: 2px 2px var(--secondary-color);
+    box-shadow: 2px 2px var(--accent-color);
 
+}
+
+.reset-button-circle:hover {
+    background-color: var(--accent-color);
 }
 
 .reset-label {

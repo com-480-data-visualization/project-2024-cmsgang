@@ -210,6 +210,11 @@ body {
     box-shadow: 1px 1px var(--accent-color); 
 }
 
+.song-box.selected {
+    background-color: var(--accent-color); /* Change background color when selected */
+    box-shadow: 1px 1px var(--accent-color); 
+}
+
 /* Styling the scrollbar for the song container
 .song-container-scrollable::-webkit-scrollbar {
     width: 8px; 

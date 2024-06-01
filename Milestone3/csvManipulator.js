@@ -136,7 +136,14 @@ function displayList(data) {
             updateSelectedSong(song);
             updateAttributeBars(song);
             const track = await getTrackById(song.id);
-            
+
+            //Make selected song appear selected, but remove selection if another song is selected
+            const allSongBoxes = document.querySelectorAll('.song-box');
+            allSongBoxes.forEach(box => {
+                box.classList.remove('selected');
+            });
+            songBox.classList.add('selected');
+
             // If the track exists and has a preview URL, show the audio player and play the song
             if (track && track.preview_url) {
                 document.getElementById('audio-player-container').style.display = 'block';
@@ -562,7 +569,6 @@ function resetAllFilters(){
 function setHighlight(element){
     element.style.color = '#ff7332';
     setTimeout(function(){ element.style.color = '#1B1141'; }, 1500);
-
 }
 
 /** When clicking on a bar, set the respective filter on the DJ board and apply it */

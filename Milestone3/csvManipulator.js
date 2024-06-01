@@ -333,11 +333,18 @@ function updateAttributeBars(songData) {
 
 // Toggle between song and artist mode
 function toggleArtistMode(button){
+    // Highlight the selected button, and remove the highlight from the other button
+    button.classList.add('selected');
+    document.getElementById('set-list-button').classList.remove('selected');
     artistMode = true;
     applyFiltersAfterReset('', artistData);
 }
 
 function toggleSongMode(button){
+    // Highlight the selected button, and remove the highlight from the other button
+    button.classList.add('selected');
+    document.getElementById('artist-button').classList.remove('selected');
+
     artistMode = false;
     applyFiltersAfterReset('', window.allSongsData);
 }

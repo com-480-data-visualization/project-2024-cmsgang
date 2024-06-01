@@ -82,6 +82,15 @@ body {
     cursor: pointer; /* Changes the cursor to signify a clickable element */
 }
 
+.list-options-button.selected{
+    background-color: var(--accent-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
+    box-shadow: 3px 3px var(--secondary-color);
+    border-radius: 5px;
+
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+}
+
 .container {
     display: grid;
     grid-template-rows: auto 1fr auto;

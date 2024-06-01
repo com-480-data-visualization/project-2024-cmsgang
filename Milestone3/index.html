@@ -132,23 +132,40 @@
             <div class="reset-all-container">
                 <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
             </div>
+            
             <div id="controls-container">
-                <div id="small-button-grid-container">
-                    <div class="small-button-grid">
-                        <button class="small-grid-button" id="button1" onclick="toggleButton(this)">Danc</button>
-                        <button class="small-grid-button" id="button2" onclick="toggleButton(this)">2</button>
-                        <button class="small-grid-button" id="button3" onclick="toggleButton(this)">3</button>
-                        <button class="small-grid-button" id="button4" onclick="toggleButton(this)">4</button>
-                        <button class="small-grid-button" id="button5" onclick="toggleButton(this)">5</button>
-                        <button class="small-grid-button" id="button6" onclick="toggleButton(this)">6</button>
-                        <button class="small-grid-button" id="button7" onclick="toggleButton(this)">7</button>
-                        <button class="small-grid-button" id="button8" onclick="toggleButton(this)">8</button>
-                        <button class="small-grid-button" id="button9" onclick="toggleButton(this)">9</button>
-                        <button class="small-grid-button" id="button10" onclick="toggleButton(this)">10</button>
-                        <button class="small-grid-button" id="button11" onclick="toggleButton(this)">11</button>
-                        <button class="small-grid-button" id="button12" onclick="toggleButton(this)">12</button>
+                <div id="small-button-grid-container" class="soundboard">
+                    <div id="small-button-grid-container">
+                        <div id="controls-column" class="controls-column">
+                            <h3 class="soundboard-title">SORT MACHINE</h3>
+                            <div class="small-button-grid">
+                                <button class="small-grid-button" id="button1" onclick="toggleButton(this)">Dance</button>
+                                <button class="small-grid-button" id="button2" onclick="toggleButton(this)">Energy</button>
+                                <button class="small-grid-button" id="button3" onclick="toggleButton(this)">Speech</button>
+                                <button class="small-grid-button" id="button5" onclick="toggleButton(this)">Acoustic</button>
+                                <button class="small-grid-button" id="button6" onclick="toggleButton(this)">Instrum</button>
+                                <button class="small-grid-button" id="button7" onclick="toggleButton(this)">Liveness</button>
+                                <button class="small-grid-button" id="button9" onclick="toggleButton(this)">Valence</button>
+                                <button class="small-grid-button" id="button10" onclick="toggleButton(this)">Loudness</button>
+                                <button class="small-grid-button" id="button11" onclick="toggleButton(this)">Tempo</button>
+    
+                            </div>
+                        </div>
+                        
+                        <div class="controls-column">
+                            <div class="button-with-label">
+                                <label class="reset-label">ORDER</label>
+                                <img src="Images/upArrow.png" id="sort-asc" class="sort-arrow" onclick="toggleSortDirection('Asc.')">
+                                <img src="Images/downArrowGray.png" id="sort-desc" class="sort-arrow" onclick="toggleSortDirection('Desc.')">
+                            </div>
+                            <div class="reset-button-container">
+                                <button class="reset-button-circle" onclick="resetAllModes()"></button>
+                                <label class="reset-label">RESET</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <div id="dj-controls">
                     <div class="disc-container">
                         <label for="Key">Key: <span id="key-value">Any</span></label>

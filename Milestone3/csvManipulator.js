@@ -301,8 +301,7 @@ function applyFiltersAfterReset(attribute, filteredSongs) {
         }
     }
 
-    // Add additional filters here as needed
-    
+    // Sort songs based on the active 
     // Update song list with filtered results
     displayList(filteredSongs);
 }
@@ -695,6 +694,45 @@ function sortSongList() {
             return a[param] - b[param];
         });
     });
-    sortedSongs = sortedSongs.reverse(); // Reverse the list to show the highest values first
-    displayList(sortedSongs);
+
+    if(sortDirection === 'Asc.'){
+        displayList(sortedSongs);
+    }else{
+        displayList(sortedSongs.reverse());
+    }
+}
+
+// Toggle sort direction
+let sortDirection = 'Asc.';
+function toggleSortDirection(buttonSortDirection){
+    sortDirection = buttonSortDirection;
+    sortSongList();
+    if(sortDirection === 'Asc.'){
+        document.getElementById('sort-asc').src = 'Images/upArrow.png';
+        document.getElementById('sort-desc').src = 'Images/downArrowGray.png';
+    }else{
+        document.getElementById('sort-asc').src = 'Images/upArrowGray.png';
+        document.getElementById('sort-desc').src = 'Images/downArrow.png';
+    }
+
+}
+
+/* let sortKeyIndex = -1;
+function toggleSortKey(button){
+    // Toggle sort key
+    sortKeyIndex = (sortKeyIndex + 1) % keys.length;
+    button.textContent = "Key: \n\n" + keys[sortKeyIndex];
+    filterSongsByKey(); 
+} */
+
+function resetAllModes() {
+    activeFilters = [];
+    sortDirection = 'Desc.';
+    sortKeyIndex = -1;
+    const buttons = document.querySelectorAll('.small-grid-button');
+    buttons.forEach(button => button.classList.remove('green'));
+
+    toggleSortDirection('Asc.');
+
+    sortSongList();
 }

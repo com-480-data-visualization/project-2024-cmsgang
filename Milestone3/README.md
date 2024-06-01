@@ -1,4 +1,4 @@
-# Interactive DJ Booth
+# Milestone 3
 
 ## Table of Contents
 - [Overview](#overview)
@@ -14,7 +14,7 @@
   - [Reset Filters and Sorting](#reset-filters-and-sorting)
 
 ## Overview
-The Interactive DJ Booth is a web application designed to allow users to search, filter, sort, and play songs. The interface includes search functionality, multiple filters for song attributes, sorting options, and an audio player for previewing tracks.
+Our visualization consists of a web application designed to allow users to search, filter, sort, and play songs. The interface includes search functionality, multiple filters for song attributes, sorting options, and an audio player for previewing tracks.
 
 ## Technical Setup
 

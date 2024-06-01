@@ -1046,7 +1046,7 @@ function updateStickmanDance(song) {
 
     // Update the video source
     var video = document.getElementById('myVideo');
-    video.src = '/project-2024-cmsgang/Milestone3/vids/' + `${emotion}`+'_' + `${energyWord}` + "_" + `${danceabilityWord}` + '.webm';
+    video.src = 'Milestone3/vids/' + `${emotion}`+'_' + `${energyWord}` + "_" + `${danceabilityWord}` + '.webm';
 
     // Calculate the playback rate based on the tempo
     var playbackRate = Math.min(Math.max(song.tempo / 10, 1), 16);

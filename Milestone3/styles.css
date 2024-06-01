@@ -153,8 +153,6 @@ body {
     margin-left:auto;
     box-sizing: border-box;
     background-color: var(--box-background);
-    /* background: linear-gradient(0deg, var(--box-background) 0%, var(--accent-color) 100%); */
-
     border: 2px solid var(--tertiary-color);
     text-align: center;
     display: flex;
@@ -251,6 +249,7 @@ body {
     text-align: center;
 }
 
+
 .hidden {
     display: none;
 }
@@ -277,8 +276,6 @@ body {
     margin-right: 10px;
     cursor: pointer; /* Change cursor to pointer */
 }
-
-
 
 .vertical-bar {
     width: 40px; /* Width of the bar */

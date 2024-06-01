@@ -559,6 +559,12 @@ function resetAllFilters(){
     resetButtonFilters();
 }
 
+function setHighlight(element){
+    element.style.color = '#ff7332';
+    setTimeout(function(){ element.style.color = '#1B1141'; }, 1500);
+
+}
+
 /** When clicking on a bar, set the respective filter on the DJ board and apply it */
 function applyFilterFromBar(attribute){
     label = document.getElementById(attribute + '-label');
@@ -568,12 +574,20 @@ function applyFilterFromBar(attribute){
         let tempoSlider = document.getElementById('tempo-slider');
         tempoSlider.value = value;
         filterSongsByTempo();
+        
+        /**link visual cue to dj booth */
+        let tempoLabel = document.getElementById('tempo-slider-label');
+        setHighlight(tempoLabel);
     }
 
     if(attribute === 'loudness'){
         let loudnessSlider = document.getElementById('loudness-slider');
         loudnessSlider.value = value;
         filterSongsByLoudness();
+
+        /**link visual cue to dj booth */
+        let loudnessLabel = document.getElementById('loudness-slider-label');
+        setHighlight(loudnessLabel);
     }
 
     if(attribute === 'energy'){
@@ -584,6 +598,10 @@ function applyFilterFromBar(attribute){
         let disc = document.getElementById('disc2');
         disc.style.transform = 'rotate(' + (value * 360) + 'deg)';
         filterSongsByEnergy();
+
+        /**link visual cue to dj booth */
+        let energydjLabel = document.getElementById('energy-dj-label');
+        setHighlight(energydjLabel);
     }
 
     if(attribute === 'key'){
@@ -603,6 +621,10 @@ function applyFilterFromBar(attribute){
             }
         }
         filterSongsByDanceability(danceabilityModes[danceabilityModeIndex].range);
+
+        /**link visual cue to dj booth */
+        let dancedjLabel = document.getElementById('dance-dj-label');
+        setHighlight(dancedjLabel);
     }
 
     if(attribute === 'valence'){
@@ -615,6 +637,10 @@ function applyFilterFromBar(attribute){
             }
         }
         filterSongsByValence(valenceModes[valenceModeIndex].range);
+
+        /**link visual cue to dj booth */
+        let mooddjLabel = document.getElementById('mood-dj-label');
+        setHighlight(mooddjLabel);
     }
     if(attribute === 'speechiness'){
         // Set the lyrics mode to the value of the bar clicked
@@ -626,6 +652,10 @@ function applyFilterFromBar(attribute){
             }
         }
         filterSongsByLyrics(lyricModes[lyricModeIndex].range);
+
+        /**link visual cue to dj booth */
+        let speechdjLabel = document.getElementById('speech-dj-label');
+        setHighlight(speechdjLabel);
     }
 
     if(attribute === 'instrumentalness'){
@@ -638,6 +668,10 @@ function applyFilterFromBar(attribute){
             }
         }
         filterSongsByInstrumental(instrumentalModes[instrumentalModeIndex].range);
+
+        /**link visual cue to dj booth */
+        let insdjLabel = document.getElementById('ins-dj-label');
+        setHighlight(insdjLabel);
     }
 }
 

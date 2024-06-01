@@ -56,9 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Aggregate data by artist
             artistData = aggregateByArtist(sortedData);
+            artistData = sortArtistsAlphabetically(artistData);
 
-            displayList(sortedData);
             window.allSongsData = sortedData; // Store all songs data for filtering
+            displayList(sortedData); // Display the list of songs
+            
         })
         .catch(error => console.error('Error loading the CSV file:', error));
 
@@ -120,39 +122,54 @@ function splitCSVButIgnoreCommasInQuotes(text) {
 function aggregateByArtist(songs) {
     const artistMap = new Map();
 
-    // Iterate through the list of songs and aggregate data by artist
+    // Iterate through the list of songs and aggregate data by individual artist
     songs.forEach(song => {
-        if (!artistMap.has(song.artist)) {
-            artistMap.set(song.artist, {
-                artist: song.artist,
-                songCount: 0,
-                danceability: 0,
-                energy: 0,
-                speechiness: 0,
-                acousticness: 0,
-                instrumentalness: 0,
-                liveness: 0,
-                valence: 0,
-                loudness: 0,
-                tempo: 0
-            });
-        }
-        const artistData = artistMap.get(song.artist);
-        artistData.songCount++;
-        artistData.danceability += song.danceability;
-        artistData.energy += song.energy;
-        artistData.speechiness += song.speechiness;
-        artistData.acousticness += song.acousticness;
-        artistData.instrumentalness += song.instrumentalness;
-        artistData.liveness += song.liveness;
-        artistData.valence += song.valence;
-        artistData.loudness += song.loudness;
-        artistData.tempo += song.tempo;
+        const artists = song.artist.split(','); // Split multiple artists
+
+        artists.forEach(artist => {
+            artist = artist.trim(); // Remove leading/trailing whitespace
+
+            if (!artistMap.has(artist)) {
+                artistMap.set(artist, {
+                    artist: artist,
+                    songCount: 0,
+                    danceability: 0,
+                    energy: 0,
+                    speechiness: 0,
+                    acousticness: 0,
+                    instrumentalness: 0,
+                    liveness: 0,
+                    valence: 0,
+                    loudness: 0,
+                    tempo: 0,
+                    keyFrequency: {}
+                });
+            }
+
+            const artistData = artistMap.get(artist);
+            artistData.songCount++;
+            artistData.danceability += song.danceability;
+            artistData.energy += song.energy;
+            artistData.speechiness += song.speechiness;
+            artistData.acousticness += song.acousticness;
+            artistData.instrumentalness += song.instrumentalness;
+            artistData.liveness += song.liveness;
+            artistData.valence += song.valence;
+            artistData.loudness += song.loudness;
+            artistData.tempo += song.tempo;
+
+            // Track the frequency of each key
+            if (!artistData.keyFrequency[song.key]) {
+                artistData.keyFrequency[song.key] = 0;
+            }
+            artistData.keyFrequency[song.key]++;
+        });
     });
 
-    // Calculate averages
+    // Calculate averages and most frequent key
     const aggregatedData = [];
     artistMap.forEach(artistData => {
+        const mostFrequentKey = Object.keys(artistData.keyFrequency).reduce((a, b) => artistData.keyFrequency[a] > artistData.keyFrequency[b] ? a : b);
         aggregatedData.push({
             artist: artistData.artist,
             danceability: artistData.danceability / artistData.songCount,
@@ -163,7 +180,8 @@ function aggregateByArtist(songs) {
             liveness: artistData.liveness / artistData.songCount,
             valence: artistData.valence / artistData.songCount,
             loudness: artistData.loudness / artistData.songCount,
-            tempo: artistData.tempo / artistData.songCount
+            tempo: artistData.tempo / artistData.songCount,
+            key: mostFrequentKey
         });
     });
 
@@ -181,12 +199,12 @@ function displayList(data) {
         songBox.className = 'song-box';
 
         const title = document.createElement('span');
-        title.className = 'song-title' ;
-        title.textContent = song.title;
+        title.className = 'song-title';
+        title.textContent = artistMode ? song.artist : song.title;
 
         const artist = document.createElement('span');
-        artist.className = 'song-artist';
-        artist.textContent = song.artist;
+        artist.className = 'song-artist' |'' ;
+        artist.textContent = artistMode ? '' : song.artist;
         
 
         songBox.appendChild(title);
@@ -221,7 +239,7 @@ function displayList(data) {
 
 function updateSelectedSong(song) {
     const selectedSongDiv = document.getElementById('selected-song');
-    selectedSongDiv.textContent = `${song.title} | ${song.artist}`; // Update the display with the selected song
+    selectedSongDiv.textContent = artistMode ? `${song.artist}` : `${song.title} | ${song.artist}`; // Update the display with the selected song
 
     const attributesContainer = document.getElementById('attributes-container');
     attributesContainer.classList.remove('hidden'); // Show the attributes container
@@ -249,6 +267,10 @@ function sortSongsAlphabetically(songs) {
             return 0;
         }
     });
+}
+
+function sortArtistsAlphabetically(artists) {
+    return artists.sort((a, b) => a.artist.localeCompare(b.artist));
 }
 
 function removeDuplicates(songs) {
@@ -307,6 +329,17 @@ function updateAttributeBars(songData) {
             label.textContent = `${value.toFixed(2)}`;
         }
     });
+}
+
+// Toggle between song and artist mode
+function toggleArtistMode(){
+    artistMode = true;
+    applyFiltersAfterReset('', artistData);
+}
+
+function toggleSongMode(){
+    artistMode = false;
+    applyFiltersAfterReset('', window.allSongsData);
 }
 
 /** 
@@ -380,14 +413,22 @@ function resetTempoFilter() {
     const tempoSlider = document.getElementById('tempo-slider');
     tempoSlider.value = tempoSlider.min; // Reset to initial value
     document.getElementById('tempo-value').textContent = 'Any';
-
-    applyFiltersAfterReset('tempo', window.allSongsData);
+    if(artistMode){
+        applyFiltersAfterReset('tempo', artistData);
+    }else{
+        applyFiltersAfterReset('tempo', window.allSongsData);
+    }
 }
 
 function filterSongsByTempo() {
     const tempoSlider = document.getElementById('tempo-slider');
     const tempoValue = parseFloat(tempoSlider.value);
-    const filteredSongs = window.allSongsData.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.tempo >= tempoValue - 1 && song.tempo <= tempoValue + 1);
+    }
     document.getElementById('tempo-value').textContent = tempoValue; // Update the displayed tempo value
 
     applyFiltersAfterReset('tempo', filteredSongs);
@@ -398,13 +439,22 @@ function resetLoudnessFilter() {
     loudnessSlider.value = loudnessSlider.min; // Reset to initial value
     document.getElementById('loudness-value').textContent = 'Any';
 
-    applyFiltersAfterReset('loudness', window.allSongsData);
+    if(artistMode){
+        applyFiltersAfterReset('loudness', artistData);
+    }else{
+        applyFiltersAfterReset('loudness', window.allSongsData);
+    }
 }
 
 function filterSongsByLoudness() {
     const loudnessSlider = document.getElementById('loudness-slider');
     const loudnessValue = parseFloat(loudnessSlider.value);
-    const filteredSongs = window.allSongsData.filter(song => song.loudness >= loudnessValue - 1 && song.loudness <= loudnessValue + 1);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.loudness >= loudnessValue - 1 && song.loudness <= loudnessValue + 1);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.loudness >= loudnessValue - 1 && song.loudness <= loudnessValue + 1);
+    }
     document.getElementById('loudness-value').textContent = loudnessValue; // Update the displayed loudness value
 
     applyFiltersAfterReset('loudness', filteredSongs);
@@ -419,7 +469,12 @@ function toggleDanceabilityMode() {
 
 function filterSongsByDanceability(range) {
     const [min, max] = range;
-    const filteredSongs = window.allSongsData.filter(song => song.danceability >= min && song.danceability <= max);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.danceability >= min && song.danceability <= max);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.danceability >= min && song.danceability <= max);
+    }
     applyFiltersAfterReset('danceability', filteredSongs);
 }
 
@@ -432,7 +487,12 @@ function toggleValenceMode() {
 
 function filterSongsByValence(range) {
     const [min, max] = range;
-    const filteredSongs = window.allSongsData.filter(song => song.valence >= min && song.valence <= max);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.valence >= min && song.valence <= max);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.valence >= min && song.valence <= max);
+    }
     applyFiltersAfterReset('valence', filteredSongs);
 }
 
@@ -445,7 +505,12 @@ function toggleLyricsMode() {
 
 function filterSongsByLyrics(range) {
     const [min, max] = range;
-    const filteredSongs = window.allSongsData.filter(song => song.speechiness >= min && song.speechiness <= max);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.speechiness >= min && song.speechiness <= max);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.speechiness >= min && song.speechiness <= max);
+    }
     applyFiltersAfterReset('lyrics', filteredSongs);
 }
 
@@ -458,7 +523,12 @@ function toggleInstrumentalMode() {
 
 function filterSongsByInstrumental(range) {
     const [min, max] = range;
-    const filteredSongs = window.allSongsData.filter(song => song.instrumentalness >= min && song.instrumentalness <= max);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.instrumentalness >= min && song.instrumentalness <= max);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.instrumentalness >= min && song.instrumentalness <= max);
+    }
     applyFiltersAfterReset('instrumental', filteredSongs);
 }
 
@@ -553,7 +623,12 @@ let lastUpdateTime = 0;
 
 function filterSongsByEnergy() {
     const energyValue = parseFloat(document.getElementById('energy-value').textContent);
-    const filteredSongs = window.allSongsData.filter(song => Math.abs(song.energy - energyValue) <= 0.05);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => Math.abs(song.energy - energyValue) <= 0.05);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => Math.abs(song.energy - energyValue) <= 0.05);
+    }
     applyFiltersAfterReset('energy', filteredSongs);
 }
 
@@ -574,7 +649,11 @@ function resetEnergy() {
     currentAngle = 0;
     document.getElementById('disc2').style.transform = 'rotate(0deg)';
     
-    applyFiltersAfterReset('energy', window.allSongsData);
+    if(artistMode){
+        applyFiltersAfterReset('energy', artistData);
+    }else{
+        applyFiltersAfterReset('energy', window.allSongsData);
+    }
 }
 
 // Your existing event listeners for dragging
@@ -598,14 +677,23 @@ function updateKey(rotation){
 
 function filterSongsByKey() {
     const keyValue = document.getElementById('key-value').textContent;
-    const filteredSongs = window.allSongsData.filter(song => song.key === keyValue);
+    let filteredSongs = [];
+    if(artistMode){
+        filteredSongs = artistData.filter(song => song.key === keyValue);
+    }else{
+        filteredSongs = window.allSongsData.filter(song => song.key === keyValue);
+    }
     applyFiltersAfterReset('key', filteredSongs);
 }
 
 function resetKey() {
     document.getElementById('key-value').textContent = "Any";
     document.getElementById('disc1').style.transform = 'rotate(0deg)';
-    applyFiltersAfterReset('key', window.allSongsData);
+    if(artistMode){
+        applyFiltersAfterReset('key', artistData);
+    }else{
+        applyFiltersAfterReset('key', window.allSongsData);
+    }
 }
 
 /** Resets the Danceability, Valence, Lyrics, and Instrumental buttons */
@@ -618,7 +706,12 @@ function resetButtonFilters(){
     valenceModeIndex = -1;
     lyricModeIndex = -1;
     instrumentalModeIndex = -1;
-    applyFiltersAfterReset('allbuttons', window.allSongsData);
+
+    if(artistMode){
+        applyFiltersAfterReset('allbuttons', artistData);
+    }else{
+        applyFiltersAfterReset('allbuttons', window.allSongsData);
+    }
 }
 
 function resetAllFilters(){
@@ -790,7 +883,7 @@ function getFilterFromButton(buttonId) {
 
 // Function to sort the song data based on the selected filter buttons
 function sortSongList() {
-    let sortedSongs = [...window.allSongsData]; // Make a copy of the data
+    let sortedSongs = artistMode ? artistData : [...window.allSongsData]; // Make a copy of the data
 
     activeFilters.forEach(param => {
         sortedSongs = sortedSongs.sort((a, b) => {
@@ -819,14 +912,6 @@ function toggleSortDirection(buttonSortDirection){
     }
 
 }
-
-/* let sortKeyIndex = -1;
-function toggleSortKey(button){
-    // Toggle sort key
-    sortKeyIndex = (sortKeyIndex + 1) % keys.length;
-    button.textContent = "Key: \n\n" + keys[sortKeyIndex];
-    filterSongsByKey(); 
-} */
 
 function resetAllModes() {
     activeFilters = [];

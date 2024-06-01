@@ -332,12 +332,12 @@ function updateAttributeBars(songData) {
 }
 
 // Toggle between song and artist mode
-function toggleArtistMode(){
+function toggleArtistMode(button){
     artistMode = true;
     applyFiltersAfterReset('', artistData);
 }
 
-function toggleSongMode(){
+function toggleSongMode(button){
     artistMode = false;
     applyFiltersAfterReset('', window.allSongsData);
 }
@@ -931,8 +931,18 @@ function toggleDiscImage(action, discID){
     }else{
         document.getElementById(discID).src = 'Images/disc_normal.png';
     }
+}
 
+function toggleSongArtist(action, button){
 
-    
 
 }
+
+
+
+
+
+
+
+
+

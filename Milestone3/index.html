@@ -29,15 +29,23 @@
         </div>
         
         <div id="main-content">
+            
             <div id="list-area">
+                <div id="list-title-area">
+                    <button class=" list-options-button header-text-large" id="set-list-button" onclick="toggleSongMode(this)">Set List</button>
+
+                    <button class="list-options-button header-text-large" id="artist-button" onclick="toggleArtistMode(this)">Artist List</button>
+                </div>
                 <div id="list-title" >
-                    <div class="header-text-frame header-text-large header-text-frame-shadow">Set List</div>
                     <hr class="custom-line">
                 </div>
+                
                 <div id="song-container" class="song-container-scrollable">
                     <!-- Songs will be dynamically loaded into this container -->
                 </div>
             </div>
+
+
             
             <div id="attributes-container" class="hidden">
                 <div class="attribute">
@@ -127,13 +135,10 @@
         </div>
 
 
-
+        
         <div id="bottom-box-container">
-            <div class="reset-all-container">
-                <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
-            </div>
-            
             <div id="controls-container">
+                
                 <div id="small-button-grid-container" class="soundboard">
                     <div id="small-button-grid-container">
                         <div id="controls-column" class="controls-column">
@@ -164,33 +169,37 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+
+
+    
                 
                 <div id="dj-controls">
                     <div class="disc-container">
                         <label for="Key" class="top-label-disc header-text-frame "><span id="key-value">Any</span></label>
                         <img src="Images/disc_normal.png" id="disc1" alt="Disc 1" style="height: 120px;" onmouseenter="toggleDiscImage('on', 'disc1')" onmouseleave="toggleDiscImage('off', 'disc1')">
-                        <label for="Key" class="bottom-label-disc header-text-frame">Key</label>
+                        <label for="Key" class="bottom-label-disc header-text-frame header-nobg">Key</label>
 
                         <button class="reset-button" onclick="resetKey()">Reset</button>                      
                     </div>
                     <div class="button-grid-container">
                         <div class="button-grid">
                             <div class="button-with-label">
-                                <label for="danceability-mode" id="dance-dj-label" class="grid-label header-text-frame">Danceability</label>
+                                <label for="danceability-mode" id="dance-dj-label" class="grid-label header-text-frame header-nobg">Danceability</label>
                                 <button class="grid-button dj-button-text" id="danceability-mode" onclick="toggleDanceabilityMode()">Any</button>
                             </div>
                             <div class="button-with-label">
-                                <label for="valence-mode" id="mood-dj-label"class="grid-label header-text-frame">Mood</label>
+                                <label for="valence-mode" id="mood-dj-label"class="grid-label header-text-frame header-nobg">Mood</label>
                                 <button class="grid-button dj-button-text" id="valence-mode" onclick="toggleValenceMode()">Any</button>
                             </div>
                             <div class="button-with-label">
                                 <button class="grid-button dj-button-text" id="lyrics-mode" onclick="toggleLyricsMode()">Any</button>
-                                <label for="lyrics-mode" id="speech-dj-label" class="grid-label header-text-frame">Speech</label>
+                                <label for="lyrics-mode" id="speech-dj-label" class="grid-label header-text-frame header-nobg">Speech</label>
                             </div>
                             <div class="button-with-label">
                                 <button class="grid-button dj-button-text" id="instrumental-mode" onclick="toggleInstrumentalMode()">Any</button>
-                                <label for="instrumental-mode" id="ins-dj-label"class="grid-label header-text-frame">Instrumental</label>
+                                <label for="instrumental-mode" id="ins-dj-label"class="grid-label header-text-frame header-nobg">Instrumental</label>
                             </div>
                         </div>
 
@@ -202,29 +211,29 @@
                     <div class="disc-container">
                         <label for="energy" class="top-label-disc header-text-frame"><span id="energy-value">Any</span></label>
                         <img src="Images/disc_normal.png" id="disc2" alt="Disc 2" style="height: 120px;" onmouseenter="toggleDiscImage('on', 'disc2')" onmouseleave="toggleDiscImage('off', 'disc2')" >
-                        <label for="energy" id="energy-dj-label" class="bottom-label-disc header-text-frame">Energy</label>
+                        <label for="energy" id="energy-dj-label" class="bottom-label-disc header-text-frame header-nobg">Energy</label>
                         <button class="reset-button" onclick="resetEnergy()">Reset</button>
                     </div>
                     <div class="slider-container">
                         <label for="loudness" class="top-label header-text-frame"> <span id="loudness-value">Any</span></label>
                         <input type="range" id="loudness-slider" name="loudness" min="0" max="35" value="0" step="1" oninput="filterSongsByLoudness()">
-                        <label for="loudness" id="loudness-slider-label" class="bottom-label header-text-frame">Loudness</label>
+                        <label for="loudness" id="loudness-slider-label" class="bottom-label header-text-frame header-nobg">Loudness</label>
                         <button class="reset-button" onclick="resetLoudnessFilter()">Reset</button>
                     </div>
                     
                     <div class="slider-container">
                         <label for="tempo" class="top-label header-text-frame"><span id="tempo-value">Any</span></label>
                         <input type="range" id="tempo-slider" name="tempo" min="45" max="215" value="45" step="1" orient="vertical" oninput="filterSongsByTempo()">
-                        <label for="tempo" id="tempo-slider-label" class="bottom-label header-text-frame">Tempo</label>
+                        <label for="tempo" id="tempo-slider-label" class="bottom-label header-text-frame header-nobg">Tempo</label>
                         <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
                     </div>
                 </div>
-    
-                <div class="button-container">
-                    <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleArtistMode()">Toggle Song/Artist</button>
-                </div>
-            </div>   
+            </div> 
+            <button class="reset-button reset-button-all" onclick="resetAllFilters()">Reset All Filters</button>
+  
         </div>
+
+       
      
         
     </div>

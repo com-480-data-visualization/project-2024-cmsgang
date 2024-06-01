@@ -42,6 +42,9 @@ let initialAngle = 0;
 let currentAngle = 0;
 let energyValue = 0;
 
+let artistData = [];
+let artistMode = false;
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch('spotify_top_songs_audio_features.csv')
         .then(response => response.text())
@@ -50,6 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const filteredData = removeSongsWithEmptyAttributes(parsedData); // Remove songs with missing attributes
             const uniqueData = removeDuplicates(filteredData); // Remove duplicates
             const sortedData = sortSongsAlphabetically(uniqueData); // Sort alphabetically
+
+            // Aggregate data by artist
+            artistData = aggregateByArtist(sortedData);
 
             displayList(sortedData);
             window.allSongsData = sortedData; // Store all songs data for filtering
@@ -111,6 +117,61 @@ function splitCSVButIgnoreCommasInQuotes(text) {
     return parts;
 }
 
+function aggregateByArtist(songs) {
+    const artistMap = new Map();
+
+    // Iterate through the list of songs and aggregate data by artist
+    songs.forEach(song => {
+        if (!artistMap.has(song.artist)) {
+            artistMap.set(song.artist, {
+                artist: song.artist,
+                songCount: 0,
+                danceability: 0,
+                energy: 0,
+                speechiness: 0,
+                acousticness: 0,
+                instrumentalness: 0,
+                liveness: 0,
+                valence: 0,
+                loudness: 0,
+                tempo: 0
+            });
+        }
+        const artistData = artistMap.get(song.artist);
+        artistData.songCount++;
+        artistData.danceability += song.danceability;
+        artistData.energy += song.energy;
+        artistData.speechiness += song.speechiness;
+        artistData.acousticness += song.acousticness;
+        artistData.instrumentalness += song.instrumentalness;
+        artistData.liveness += song.liveness;
+        artistData.valence += song.valence;
+        artistData.loudness += song.loudness;
+        artistData.tempo += song.tempo;
+    });
+
+    // Calculate averages
+    const aggregatedData = [];
+    artistMap.forEach(artistData => {
+        aggregatedData.push({
+            artist: artistData.artist,
+            danceability: artistData.danceability / artistData.songCount,
+            energy: artistData.energy / artistData.songCount,
+            speechiness: artistData.speechiness / artistData.songCount,
+            acousticness: artistData.acousticness / artistData.songCount,
+            instrumentalness: artistData.instrumentalness / artistData.songCount,
+            liveness: artistData.liveness / artistData.songCount,
+            valence: artistData.valence / artistData.songCount,
+            loudness: artistData.loudness / artistData.songCount,
+            tempo: artistData.tempo / artistData.songCount
+        });
+    });
+
+    return aggregatedData;
+}
+
+
+
 function displayList(data) {
     const container = document.getElementById('song-container');
     container.innerHTML = ''; // Clear previous entries
@@ -120,12 +181,13 @@ function displayList(data) {
         songBox.className = 'song-box';
 
         const title = document.createElement('span');
-        title.className = 'song-title';
+        title.className = 'song-title' ;
         title.textContent = song.title;
 
         const artist = document.createElement('span');
         artist.className = 'song-artist';
         artist.textContent = song.artist;
+        
 
         songBox.appendChild(title);
         songBox.appendChild(artist);
@@ -225,11 +287,12 @@ function updateAttributeBars(songData) {
         const value = songData[attr];
         const min = minMaxValues[attr].min;
         const max = minMaxValues[attr].max;
-        const height = 100 * ((value - min) / (max - min));
+        let height = 100 * ((value - min) / (max - min));
         
         const positiveBar = document.getElementById(`${attr}-bar-positive`);
         const negativeBar = document.getElementById(`${attr}-bar-negative`);
         
+        height = height + 15; // Make the small bars not look empty
         
         positiveBar.style.height = `${height}%`; // Adjust height for positive bar
         

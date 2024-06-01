@@ -215,6 +215,7 @@ function displayList(data) {
         songBox.addEventListener('click', async function() {
             updateSelectedSong(song);
             updateAttributeBars(song);
+            updateStickmanDance(song);
             const track = await getTrackById(song.id);
 
             //Make selected song appear selected, but remove selection if another song is selected
@@ -223,7 +224,7 @@ function displayList(data) {
                 box.classList.remove('selected');
             });
             songBox.classList.add('selected');
-
+            
             // If the track exists and has a preview URL, show the audio player and play the song
             if (track && track.preview_url) {
                 document.getElementById('audio-player-container').style.display = 'block';
@@ -945,6 +946,59 @@ function toggleSongArtist(action, button){
 
 }
 
+// DANCER DUDE FUNCTIONS    
+// Helper functions to classify values
+function value_to_word(value) {
+    if (value < 0.33) {
+        return "low";
+    } else if (value < 0.66) {
+        return "medium";
+    } else {
+        return "high";
+    }
+}
+
+function valence_to_emotion(value) {
+    if (value < 0.25) {
+        return "sad";
+    } else if (value < 0.5) {
+        return "ok";
+    } else {
+        return "happy";
+    }
+}
+
+function getElementTextContent(id) {
+    var element = document.getElementById(id);
+    if (element) {
+        return element.textContent;
+    } else {
+        console.error("Element with ID '" + id + "' not found.");
+        return ""; // Return a default or empty string to handle missing element gracefully
+    }
+}
+
+function updateStickmanDance(song) {
+
+    // Determine the song to load based on the current attributes
+    var emotion = valence_to_emotion(song.valence);
+    var energyWord = value_to_word(song.energy);
+    var danceabilityWord = value_to_word(song.danceability);
+
+    // Update the video source
+    var video = document.getElementById('myVideo');
+    video.src = '/Milestone3/vids/' + `${emotion}`+'_' + `${energyWord}` + "_" + `${danceabilityWord}` + '.webm';
+
+    // Calculate the playback rate based on the tempo
+    var playbackRate = Math.min(Math.max(song.tempo / 10, 1), 16);
+    video.playbackRate = playbackRate;
+
+    // Load the new video and play
+    video.load();
+    video.play();
+}
+    
+ 
 
 
 

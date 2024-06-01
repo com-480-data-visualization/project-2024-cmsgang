@@ -40,7 +40,7 @@ Our visualization consists of a web application designed to allow users to searc
 ### Sort Songs
 - **Sort Buttons**: Use the small grid buttons in the SORT MACHINE section to sort songs by attributes like danceability, energy, etc.
   - Toggle the buttons to apply or remove sorting based on different attributes.
-  - The active filters are highlighted in green.
+  - The active filters are highlighted in purple.
 - **Sort Direction**: Use the up and down arrows to sort in ascending or descending order.
 
 ### DJ Table Filters

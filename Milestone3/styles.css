@@ -39,8 +39,6 @@ body {
 
 .header-text-frame-shadow{
     box-shadow: 3px 3px var(--tertiary-color);
-
-
 }
 
 .header-text-large{
@@ -48,6 +46,9 @@ body {
 }
 
 .nice-font{
+    text-align: center;
+    margin-top: 10px;
+    color:var(--secondary-color); 
     font-size: 18px;
     font-weight: bold; 
     font-style: italic;

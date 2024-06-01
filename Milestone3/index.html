@@ -169,10 +169,7 @@
                 <div id="dj-controls">
                     <div class="disc-container">
                         <label for="Key" class="top-label-disc header-text-frame "><span id="key-value">Any</span></label>
-                        <!-- <img src="Images/disc_shadow.png" id="disc1s" alt="Disc 1S" style="height: 120px;" >
-                        <img src="Images/disc_green.png" id="disc1g" alt="Disc 1G" style="height: 120px;" > -->
-
-                        <img src="Images/disc_normal.png" id="disc1" alt="Disc 1" style="height: 120px;" >
+                        <img src="Images/disc_normal.png" id="disc1" alt="Disc 1" style="height: 120px;" onmouseenter="toggleDiscImage('on', 'disc1')" onmouseleave="toggleDiscImage('off', 'disc1')">
                         <label for="Key" class="bottom-label-disc header-text-frame">Key</label>
 
                         <button class="reset-button" onclick="resetKey()">Reset</button>                      
@@ -204,9 +201,7 @@
     
                     <div class="disc-container">
                         <label for="energy" class="top-label-disc header-text-frame"><span id="energy-value">Any</span></label>
-                        <img src="Images/disc_normal.png" id="disc2" alt="Disc 2" style="height: 120px;" >
-                        <!-- <img src="Images/disc_green.png" id="disc2g" alt="Disc 2G" style="height: 120px;" >
-                        <img src="Images/disc_shadow.png" id="disc2s" alt="Disc 2S" style="height: 120px;" > -->
+                        <img src="Images/disc_normal.png" id="disc2" alt="Disc 2" style="height: 120px;" onmouseenter="toggleDiscImage('on', 'disc2')" onmouseleave="toggleDiscImage('off', 'disc2')" >
                         <label for="energy" class="bottom-label-disc header-text-frame">Energy</label>
                         <button class="reset-button" onclick="resetEnergy()">Reset</button>
                     </div>

@@ -736,3 +736,15 @@ function resetAllModes() {
 
     sortSongList();
 }
+
+function toggleDiscImage(action, discID){
+    if(action === "on"){
+        document.getElementById(discID).src = 'Images/disc_green.png';
+    }else{
+        document.getElementById(discID).src = 'Images/disc_normal.png';
+    }
+
+
+    
+
+}

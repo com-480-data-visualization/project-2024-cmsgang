@@ -46,7 +46,7 @@ let artistData = [];
 let artistMode = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/Milestone3/spotify_top_songs_audio_features.csv')
+    fetch('Milestone3/spotify_top_songs_audio_features.csv')
         .then(response => response.text())
         .then(data => {
             const parsedData = parseCSV(data);

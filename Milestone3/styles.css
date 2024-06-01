@@ -1,10 +1,12 @@
 :root { 
-    --primary-color: #ffffff;  
+    --primary-color: #fff7fb;  
     --secondary-color: #4C184C;  
-    --accent-color: #e7ffbb; 
-    --background-color: #F5D3FF;
-    --box-background: #e4b0f4;
-    --text-color: #800080; 
+    /* --accent-color: #e7ffbb;  */
+    --accent-color: #FE6119;
+    --background-color: #fde9fd;
+    /* --box-background: #e4b0f4; */
+    --box-background: #FFB4ED;
+    --tertiary-color: #800080; 
     --text-color-light: #fff;
     --border-color: #660066; 
     --item-color: #ffffff;
@@ -15,20 +17,55 @@
     --small-green-button-color: #14b914;
     --small-green-button-hover: #1adf1a;
 }
+:root { 
+    --primary-color: #F4FFFF; 
+    --secondary-color: #1A1141;  
+    --accent-color: #e7ffbb; 
+    --button-color: #ff7332;
+    --accent-color: #ff7332;
+    --background-color: #FFE5F5;
+    /* --box-background: #e4b0f4; */
+    --box-background: #ffc6dc;
+    --tertiary-color: #342672; 
+    --text-color-light: #fff;
+    --item-color: #ffffff;
+    --dj-background-color:#c9b5ce;
+    --bar-shadow-color: #e0a3c0;
+    --small-gray-button-color: #3b3b3b9e;
+    --small-red-button-hover: #a9a9a9;
+    --small-green-button-color: #14b914;
+    --small-green-button-hover: #1adf1a;
+}
+
 
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color);
+    font-family: 'Gill Sans', sans-serif;
+    background: var(--background-color);
+   
 }
+
+/* .text-frame{
+    padding: 1px;
+    margin: 10px;
+    margin-left: 50px;
+    width: 100px; 
+    height: 40px;
+    background-color: var(--accent-color);
+    text-align: center;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+    box-shadow: 3px 3px var(--tertiary-color);
+
+} */
 
 .container {
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    max-width:1200px;
     margin: 0 auto;
 }
 
@@ -44,7 +81,7 @@ body {
     padding: 10px;
     border: none;
     background-color: var(--background-color);
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--tertiary-color);
     margin: 0 auto;
     display: block;
 }
@@ -107,20 +144,24 @@ body {
 
 #main-content {
     display: grid;
-    grid-template-columns: 0.5fr 3fr 1fr;
+    /* grid-template-columns: 0.5fr 3fr 1fr; */
+    grid-template-columns: 1fr 1fr 2fr;
     gap: 20px;
     align-items: start; /* Align items at the start */
     justify-items: center; /* Center the controls container */
+    /* margin-left: -50px;  */
 }
 
 #list-area {
     width: 400px; /* Set a fixed width */
     height: 480px;
     padding: 10px;
-    margin-left:-340px;
+    margin-left:auto;
     box-sizing: border-box;
     background-color: var(--box-background);
-    border: 1px solid var(--border-color);
+    /* background: linear-gradient(0deg, var(--box-background) 0%, var(--accent-color) 100%); */
+
+    border: 1px solid var(--tertiary-color);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -143,7 +184,7 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 3px 3px var(--tertiary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -188,7 +229,7 @@ body {
 }
 
 .song-container-scrollable::-webkit-scrollbar-thumb {
-    background: var(--border-color); /* Thumb color */
+    background: var(--tertiary-color); /* Thumb color */
     border-radius: 10px; /* Rounded corners for the thumb */
     border: 2px solid var(--box-background); /* Space around the thumb */
 }
@@ -200,7 +241,7 @@ body {
 /* For Firefox */
 .song-container-scrollable {
     scrollbar-width: thick; /* Makes the scrollbar thin */
-    scrollbar-color: var(--border-color) var(--box-background); /* Thumb and track color */
+    scrollbar-color: var(--tertiary-color) var(--box-background); /* Thumb and track color */
 }
 
 #attributes-container {
@@ -226,7 +267,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0px;
+    margin: 10px;
     flex: 1; /* Equal width for all bars */
 }
 
@@ -288,7 +329,7 @@ body {
     left: -15px; /* Adjust as needed to bring labels closer to the bars */
     bottom: 25%; /* Center vertically */
     text-align: center;
-    color: var(--text-color);
+    color: var(--tertiary-color);
     font-weight: bold;
 }
 
@@ -297,7 +338,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: var(--text-color);
+    color: var(--tertiary-color);
     font-weight: bold;
 }
 
@@ -319,8 +360,8 @@ body {
 
 .reset-all-container{
     align-self:end;
-    padding-right: 270px;
-    margin-bottom: -20px;
+    padding-right: 120px;
+    margin-bottom: -30px;
 }
 
 #controls-container {
@@ -361,10 +402,10 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    border: 3px solid var(--border-color);
-    background-color: var(--dj-background-color);
+    border: 3px solid var(--tertiary-color);
+    background-color: var(--box-background);
     border-radius: 6px;
-
+    margin-top:20px;
 }
 
 .slider-container {
@@ -391,7 +432,7 @@ body {
 .slider-container input[type="range"] {
     transform: rotate(-90deg);
     width: 100px;
-    accent-color: var(--text-color);
+    accent-color: var(--tertiary-color);
     
 }
 
@@ -411,6 +452,10 @@ body {
     text-align: center;
 }
 
+.disc-container img{
+    cursor: pointer;
+}
+
 .button-container {
     display: flex;
     justify-content: center;
@@ -421,7 +466,7 @@ body {
 .custom-line {
     border: none;
     height: 2px;
-    background-color: var(--text-color); /* Match the color of the text */
+    background-color: var(--tertiary-color); /* Match the color of the text */
     margin: 5px 0; /* Adjust the space around the lines */
 }
 
@@ -431,7 +476,7 @@ body {
 }
 
 #song-artist-list h3 {
-    color: var(--text-color);
+    color: var(--tertiary-color);
 }
 
 #crowd-reaction img {
@@ -443,14 +488,16 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    margin-left: -350px;
-    padding-right: 100px;
+    padding-right: 30px;
+    /* margin-left: -50px;  */
+
 }
 
 .small-button-grid {
     display: grid;
-    grid-template-columns: repeat(4, 50px); /* 4 columns, adjust size as needed */
+    grid-template-columns: repeat(6, 50px); /* 4 columns, adjust size as needed */
     grid-gap: 10px; /* Space between buttons */
+
 }
 
 .small-grid-button {
@@ -463,7 +510,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     line-height: 40px; /* Center text vertically */
-    box-shadow: 2px 2px black;
+    box-shadow: 3px 3px var(--secondary-color);
 }
 
 .small-grid-button:hover {
@@ -477,7 +524,6 @@ body {
 .small-grid-button.green:hover {
     background-color: var(--small-green-button-hover); /* Color on hover */
 }
-
 
 
 .button-grid-container {
@@ -496,17 +542,15 @@ body {
     gap: 10px; /* Space between buttons */
     justify-content: center; /* Center the grid horizontally */
     align-items: center; /* Center the grid vertically */
-    padding-left: 20px; 
-    padding-right: 20px;
-    padding-top: -0px;
-    padding-bottom: 0px;
+    
+
 }
 
 .grid-button {
     width: 50px; /* Width of each button */
     height: 50px; /* Height of each button to make it square */
-    background-color: var(--box-background); /* Button color from your color scheme */
-    border: 1px solid var(--border-color); /* Button border from your color scheme */
+    background-color: var(--primary-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
     cursor: pointer; /* Changes the cursor to signify a clickable element */
     box-shadow: 3px 3px var(--secondary-color);
     margin: 3px;
@@ -516,7 +560,7 @@ body {
     width: 50px; /* Width of each button */
     height: 50px; /* Height of each button to make it square */
     background-color: var(--accent-color); /* Button color from your color scheme */
-    border: 1px solid var(--border-color); /* Button border from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
     box-shadow: 3px 3px var(--secondary-color);
 
     cursor: pointer; /* Changes the cursor to signify a clickable element */

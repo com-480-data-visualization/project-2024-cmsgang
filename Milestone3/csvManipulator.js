@@ -189,7 +189,6 @@ function aggregateByArtist(songs) {
 }
 
 
-
 function displayList(data) {
     const container = document.getElementById('song-container');
     container.innerHTML = ''; // Clear previous entries
@@ -971,11 +970,11 @@ function toggleSortDirection(buttonSortDirection){
     sortDirection = buttonSortDirection;
     sortSongList();
     if(sortDirection === 'Asc.'){
-        document.getElementById('sort-asc').src = '/project-2024-cmsgang/Milestone3/Images/upArrow.png';
-        document.getElementById('sort-desc').src = '/project-2024-cmsgang/Milestone3/Images/downArrowGray.png';
+        document.getElementById('sort-asc').src = 'Milestone3/Images/upArrow.png';
+        document.getElementById('sort-desc').src = 'Milestone3/Images/downArrowGray.png';
     }else{
-        document.getElementById('sort-asc').src = '/project-2024-cmsgang/Milestone3/Images/upArrowGray.png';
-        document.getElementById('sort-desc').src = '/project-2024-cmsgang/Milestone3/Images/downArrow.png';
+        document.getElementById('sort-asc').src = 'Milestone3/Images/upArrowGray.png';
+        document.getElementById('sort-desc').src = 'Milestone3/Images/downArrow.png';
     }
 
 }
@@ -994,9 +993,9 @@ function resetAllModes() {
 
 function toggleDiscImage(action, discID){
     if(action === "on"){
-        document.getElementById(discID).src = '/project-2024-cmsgang/Milestone3/Images/disc_green.png';
+        document.getElementById(discID).src = 'Milestone3/Images/disc_green.png';
     }else{
-        document.getElementById(discID).src = '/project-2024-cmsgang/Milestone3/Images/disc_normal.png';
+        document.getElementById(discID).src = 'Milestone3/Images/disc_normal.png';
     }
 }
 

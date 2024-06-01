@@ -1,30 +1,9 @@
 :root { 
-    --primary-color: #fff7fb;  
-    --secondary-color: #4C184C;  
-    /* --accent-color: #e7ffbb;  */
-    --accent-color: #FE6119;
-    --background-color: #fde9fd;
-    /* --box-background: #e4b0f4; */
-    --box-background: #FFB4ED;
-    --tertiary-color: #800080; 
-    --text-color-light: #fff;
-    --border-color: #660066; 
-    --item-color: #ffffff;
-    --dj-background-color:#e3bdff;
-    --bar-shadow-color: #d0a5dd;
-    --small-gray-button-color: #3b3b3b9e;
-    --small-red-button-hover: #a9a9a9;
-    --small-green-button-color: #14b914;
-    --small-green-button-hover: #1adf1a;
-}
-:root { 
     --primary-color: #F4FFFF; 
     --secondary-color: #1A1141;  
     --accent-color: #e7ffbb; 
-    --button-color: #ff7332;
     --accent-color: #ff7332;
     --background-color: #FFE5F5;
-    /* --box-background: #e4b0f4; */
     --box-background: #ffc6dc;
     --tertiary-color: #342672; 
     --text-color-light: #fff;
@@ -32,9 +11,8 @@
     --dj-background-color:#c9b5ce;
     --bar-shadow-color: #e0a3c0;
     --small-gray-button-color: #3b3b3b9e;
-    --small-red-button-hover: #a9a9a9;
-    --small-green-button-color: #14b914;
-    --small-green-button-hover: #1adf1a;
+    --small-green-button-color: #a88bff;
+    --small-green-button-hover: #7353d1;
 }
 
 
@@ -43,22 +21,26 @@ body {
     margin: 0;
     font-family: 'Gill Sans', sans-serif;
     background: var(--background-color);
+
    
 }
 
-/* .text-frame{
-    padding: 1px;
+.header-text-frame{
+    padding: 3px;
     margin: 10px;
-    margin-left: 50px;
-    width: 100px; 
-    height: 40px;
-    background-color: var(--accent-color);
+    width:max-content;
+    height:max-content;
+    background-color: var(--primary-color);
     text-align: center;
     border: 1px solid var(--tertiary-color);
     border-radius: 5px;
     box-shadow: 3px 3px var(--tertiary-color);
-
-} */
+    justify-content: center;
+    font-weight: bold;
+} 
+.header-text-large{
+    font-size: 24px;
+}
 
 .container {
     display: grid;
@@ -161,7 +143,7 @@ body {
     background-color: var(--box-background);
     /* background: linear-gradient(0deg, var(--box-background) 0%, var(--accent-color) 100%); */
 
-    border: 1px solid var(--tertiary-color);
+    border: 2px solid var(--tertiary-color);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -215,33 +197,34 @@ body {
 
 .song-box:hover {
     background-color: var(--accent-color); /* Change background color on hover */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhance box shadow on hover */
+    box-shadow: 1px 1px var(--accent-color); 
 }
 
-/* Styling the scrollbar for the song container */
+/* Styling the scrollbar for the song container
 .song-container-scrollable::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
+    width: 8px; 
 }
 
 .song-container-scrollable::-webkit-scrollbar-track {
-    background: var(--box-background); /* Track color */
-    border-radius: 10px; /* Rounded corners for the track */
-}
+    background: var(--box-background); 
+    border-radius: 10px; 
+} */
 
-.song-container-scrollable::-webkit-scrollbar-thumb {
-    background: var(--tertiary-color); /* Thumb color */
-    border-radius: 10px; /* Rounded corners for the thumb */
-    border: 2px solid var(--box-background); /* Space around the thumb */
+/* .song-container-scrollable::-webkit-scrollbar-thumb {
+    background: var(--tertiary-color);
+    border-radius: 10px; 
+    border: 2px solid var(--box-background); 
 }
 
 .song-container-scrollable::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color); /* Thumb color on hover */
-}
+    background: var(--accent-color); 
+} */
 
-/* For Firefox */
+/* Scroll bar */
 .song-container-scrollable {
-    scrollbar-width: thick; /* Makes the scrollbar thin */
-    scrollbar-color: var(--tertiary-color) var(--box-background); /* Thumb and track color */
+    scrollbar-width: thick; 
+    scrollbar-color: var(--tertiary-color) transparent; /* Thumb and track color */
+    cursor : pointer;
 }
 
 #attributes-container {
@@ -289,14 +272,13 @@ body {
     width: 40px; /* Width of the bar */
     position: absolute;
     bottom: 50%; /* Start from the center */
-    background-color: var(--item-color);
-
-    color: var(--item-color);
+    background-color: var(--primary-color);
     transition: height 0.5s ease-in-out;
 }
 
 .vertical-bar.hovered {
     background-color: var(--accent-color); /* Light background color on hover */
+    box-shadow: 1px 1px var(--accent-color);
     /*border-radius: 5px; /* Rounded corners on hover */
     /*transition: background-color 0.3s ease-in-out; /* Smooth transition */
 }
@@ -308,9 +290,8 @@ body {
     border-bottom-left-radius: 20px; /* rounded corners */
     border-bottom-right-radius: 20px; /* rounded corners */
     box-shadow: 0px 3px 0px 1px var(--bar-shadow-color);
-
-
 }
+
 
 .vertical-bar.positive {
     height: 0%; /* Initial height, will be set dynamically */
@@ -381,19 +362,12 @@ body {
     margin-top: 30px;
     margin-bottom: 10px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px var(--accent-color);
+    gap: 30px;
 }
 
-.reset-button-grid{
-    background-color: var(--secondary-color);
-    color: var(--text-color-light);
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    margin-top: 6px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+.reset-button:hover{
+    background-color: var(--accent-color);
 }
 
 /* whole dj booth */
@@ -432,8 +406,7 @@ body {
 .slider-container input[type="range"] {
     transform: rotate(-90deg);
     width: 100px;
-    accent-color: var(--tertiary-color);
-    
+    accent-color: var(--tertiary-color);   
 }
 
 .disc-container {
@@ -443,7 +416,6 @@ body {
     padding-top: 5px;
     position: relative; 
 }
-
 
 .disc-container label{
     padding-top: 0px;
@@ -466,7 +438,7 @@ body {
 .custom-line {
     border: none;
     height: 2px;
-    background-color: var(--tertiary-color); /* Match the color of the text */
+    background-color: var(--tertiary-color);
     margin: 5px 0; /* Adjust the space around the lines */
 }
 
@@ -485,11 +457,10 @@ body {
 
 /* Styles for the small button grid container */
 .soundboard {
-    background-color: #D3D3D3; /* Light grey background */
-    border: 2px solid #A9A9A9; /* Dark grey border */
+    background-color: var(--box-background);
+    border: 2px solid var(--tertiary-color);
     border-radius: 10px;
     padding: 10px;
-    margin-top: 20px;
     width: fit-content; /* Adjust width based on content */
     margin-left: auto;
     margin-right: auto;
@@ -500,50 +471,44 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    padding-right: 30px;
-    /* margin-left: -50px;  */
-
-    /* margin-top: 10px;
-    margin-left: 0px;
-    padding: auto; */
 }
 
 .controls-column{
     display: flex;
     flex-direction: column;
     align-items: center;
+  
 }
 
 .soundboard-title {
     margin-bottom: 5px;
-    margin-top: -10px;
-    color: black;
-    font-size: 15px;
+    margin-top: -20px;
+    font-size: 18px;
     text-align: center;
 }
 
 .small-button-grid {
     display: grid;
-    grid-template-columns: repeat(6, 50px); /* 4 columns, adjust size as needed */
+    grid-template-columns: repeat(3, 100px); /* 4 columns, adjust size as needed */
     grid-gap: 10px; /* Space between buttons */
 
 }
 
 .small-grid-button {
-    width: 50px; /* Adjust size as needed */
-    height: 50px; /* Adjust size as needed */
-    background-color: var(--small-gray-button-color); /* Initial color */
-    color: white;
-    border: none;
+    width: 100px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    background-color: var(--primary-color); /* Initial color */
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
     text-align: center;
     cursor: pointer;
     font-size: 16px;
-    line-height: 40px; /* Center text vertically */
+    line-height: 30px; /* Center text vertically */
     box-shadow: 3px 3px var(--secondary-color);
 }
 
 .small-grid-button:hover {
-    background-color: var(--small-red-button-hover); /* Color on hover */
+    background-color: var(--accent-color); /* Color on hover */
 }
 
 .small-grid-button.green {
@@ -585,15 +550,17 @@ body {
 .reset-button-circle {
     width: 30px;
     height: 30px;
-    background-color: rgb(169, 0, 0);
+    background-color: var(--accent-color);
     border: none;
     border-radius: 50%; /* Make it a circle */
     cursor: pointer;
+    box-shadow: 2px 2px var(--secondary-color);
+
 }
 
 .reset-label {
     margin-top: 5px; /* Space between the button and the label */
-    color: black; /* Adjust color to fit the theme */
+    color: var(--secondary-color); /* Adjust color to fit the theme */
     font-size: 11px; /* Adjust size as needed */
     font-weight: bold;
     text-align: center;
@@ -650,7 +617,7 @@ body {
 }
 
 .bar {
-    fill: var(--item-color);
+    fill: var(--primary-color);
 }
 
 .dj-button-text {

@@ -848,6 +848,11 @@ function toggleDiscImage(action, discID){
     }
 }
 
+function toggleSongArtist(action, button){
+
+
+}
+
 
 
 

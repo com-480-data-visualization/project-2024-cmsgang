@@ -58,6 +58,30 @@ body {
     font-style: italic;
 }
 
+.list-options-button {
+    padding: 3px;
+    margin: 10px;
+    width:max-content;
+    height:max-content;
+    background-color: var(--primary-color);
+    text-align: center;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 3px 3px var(--tertiary-color);
+
+}
+
+.list-options-button:hover {
+    background-color: var(--accent-color); /* Button color from your color scheme */
+    border: 1px solid var(--tertiary-color); /* Button border from your color scheme */
+    box-shadow: 3px 3px var(--secondary-color);
+    border-radius: 5px;
+
+    cursor: pointer; /* Changes the cursor to signify a clickable element */
+}
+
 .container {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -159,14 +183,23 @@ body {
     background-color: var(--box-background);
     border: 2px solid var(--tertiary-color);
     text-align: center;
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
 }
 
-#list-title {
-    flex: 0 0 auto; /* Make the title non-flexible */
-    text-align: center; /* Center the title */
+#list-title-area{
+    display:flex; 
+    flex-direction: row;
+    justify-content:space-evenly
 }
+
+.item.hover{
+    background-color: var(--accent-color);
+    box-shadow: 1px 1px var(--accent-color);
+    border-radius: 5px;
+}
+
 
 .song-container-scrollable {
     width: 100%;
@@ -328,15 +361,6 @@ body {
     height: 480px;
 }
 
-#bottom-box-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0px;
-    margin-top: -100px;
-}
-
 .reset-all-container{
     align-self:end;
     padding-right: 120px;
@@ -351,6 +375,19 @@ body {
     margin: 20px auto; /* Center container and add spacing */
 }
 
+/*whole bottom area */
+#bottom-box-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    gap: 0px;
+    margin-top: -100px;
+    /* move entire bottom box */
+    margin-left: 55px; 
+    
+}
+
 .reset-button {
     background-color: var(--secondary-color);
     color: var(--text-color-light);
@@ -361,6 +398,12 @@ body {
     border-radius: 20px;
     box-shadow: 2px 2px var(--accent-color);
     gap: 30px;
+    width: max-content; 
+}
+.reset-button-all{
+    height: min-content; 
+    margin-left: 180px; 
+    margin-top:-48px;  
 }
 
 .reset-button:hover{

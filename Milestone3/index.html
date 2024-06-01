@@ -29,11 +29,17 @@
         </div>
         
         <div id="main-content">
+            
             <div id="list-area">
+                <div id="list-title-area">
+                    <button class=" list-options-button header-text-large" id="set-list-button" onclick="toggleSongArtist(this)">Set List</button>
+
+                    <button class="list-options-button header-text-large" id="artist-button" onclick="toggleSongArtist(this)">Artist List</button>
+                </div>
                 <div id="list-title" >
-                    <div class="header-text-frame header-text-large header-text-frame-shadow">Set List</div>
                     <hr class="custom-line">
                 </div>
+                
                 <div id="song-container" class="song-container-scrollable">
                     <!-- Songs will be dynamically loaded into this container -->
                 </div>
@@ -129,13 +135,10 @@
         </div>
 
 
-
+        
         <div id="bottom-box-container">
-            <div class="reset-all-container">
-                <button class="reset-button" onclick="resetAllFilters()">Reset All Filters</button>
-            </div>
-            
             <div id="controls-container">
+                
                 <div id="small-button-grid-container" class="soundboard">
                     <div id="small-button-grid-container">
                         <div id="controls-column" class="controls-column">
@@ -166,7 +169,11 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+
+
+    
                 
                 <div id="dj-controls">
                     <div class="disc-container">
@@ -221,12 +228,12 @@
                         <button class="reset-button" onclick="resetTempoFilter()">Reset</button>
                     </div>
                 </div>
-    
-                <div class="button-container">
-                    <button id="toggle-song-artist" style="height: 100px; width: 100px;" onclick="toggleSongArtist(this)">Toggle Song/Artist</button>
-                </div>
-            </div>   
+            </div> 
+            <button class="reset-button reset-button-all" onclick="resetAllFilters()">Reset All Filters</button>
+  
         </div>
+
+       
      
         
     </div>
